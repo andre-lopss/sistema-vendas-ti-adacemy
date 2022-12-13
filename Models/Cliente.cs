@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using sistema_vendas_ti_adacemy.Dto;
 
 namespace sistema_vendas_ti_adacemy.Models
 {
@@ -12,5 +13,16 @@ namespace sistema_vendas_ti_adacemy.Models
         public string Login { get; set; }
         public string Senha { get; set; }
 
+        public Cliente()
+        {
+
+        }
+
+        public Cliente(CadastrarClienteDTO dto)
+        {
+            Nome = dto.Nome;
+            Login = dto.Login;
+            Senha = dto.Senha;
+        }
     }
 }

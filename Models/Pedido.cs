@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using sistema_vendas_ti_adacemy.Dto;
 
 namespace sistema_vendas_ti_adacemy.Models
 {
@@ -14,5 +15,20 @@ namespace sistema_vendas_ti_adacemy.Models
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
         public float ValorTotal { get; set; }
+
+        public Pedido()
+        {
+
+        }
+
+        public Pedido(CadastrarPedidoDTO dto)
+        {
+            Data = dto.Data;
+            VendedorId = dto.VendedorId;
+            Vendedor = dto.Vendedor;
+            ClienteId = dto.ClienteId;
+            Cliente = dto.Cliente;
+            ValorTotal = dto.ValorTotal;
+        }
     }
 }
