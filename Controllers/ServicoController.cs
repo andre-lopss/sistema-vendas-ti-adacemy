@@ -27,5 +27,16 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(servico);
             return Ok(servico);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var servico = _repository.ObterPorId(id);
+
+            if(servico is not null)
+                return Ok(servico);
+            else
+                return NotFound(new { Mensagem = "Servico não encontrado"});
+        }
     }
 }

@@ -17,8 +17,16 @@ namespace sistema_vendas_ti_adacemy.Models
         {
 
         }
-        
-        public Vendedor(CadastrarVendedorDTO dto){
+
+        public Vendedor(CadastrarVendedorDTO dto)
+        {
+            Nome = dto.Nome;
+            Login = dto.Login;
+            Senha = dto.Senha;
+        }
+
+        public void MapearAtualizarVendedorDTO(AtualizarVendedorDTO dto)
+        {
             Nome = dto.Nome;
             Login = dto.Login;
             Senha = dto.Senha;
