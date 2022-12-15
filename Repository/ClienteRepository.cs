@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using sistema_vendas_ti_adacemy.Context;
+using sistema_vendas_ti_adacemy.Dto;
 using sistema_vendas_ti_adacemy.Models;
 
 namespace sistema_vendas_ti_adacemy.Repository
@@ -20,6 +21,39 @@ namespace sistema_vendas_ti_adacemy.Repository
         {
             _context.Clientes.Add(cliente);
             _context.SaveChanges();
+        }
+
+        public Cliente ObterPorId(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            return cliente;
+        }
+
+        public List<ObterClienteDTO> ObterPorNome(string nome)
+        {
+            var clientes = _context.Clientes.Where(x => x.Nome.Contains(nome))
+                                                    .Select(x => new ObterClienteDTO(x))
+                                                    .ToList();
+            return clientes;
+        }
+
+        public Cliente AtualizarCliente(Cliente cliente)
+        {
+            _context.Clientes.Update(cliente);
+            _context.SaveChanges();
+            return cliente;
+        }
+
+        public void DeletarCliente(Cliente cliente)
+        {
+            _context.Clientes.Remove(cliente);
+            _context.SaveChanges();
+        }
+
+        public void AtualizarSenha(Cliente cliente, AtualizarSenhaClienteDTO dto)
+        {
+            cliente.Senha = dto.Senha;
+            AtualizarCliente(cliente);
         }
     }
 }

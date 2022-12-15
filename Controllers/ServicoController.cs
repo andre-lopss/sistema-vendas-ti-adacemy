@@ -33,10 +33,60 @@ namespace sistema_vendas_ti_adacemy.Controllers
         {
             var servico = _repository.ObterPorId(id);
 
-            if(servico is not null)
+            if (servico is not null)
                 return Ok(servico);
             else
-                return NotFound(new { Mensagem = "Servico não encontrado"});
+                return NotFound(new { Mensagem = "Servico não encontrado" });
+        }
+
+        [HttpGet("ObterPorNome/{nome}")]
+        public IActionResult ObterPorNome(string nome)
+        {
+            var servicos = _repository.ObterPorNome(nome);
+            return Ok(servicos);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, AtualizarServicoDTO dto)
+        {
+            var servicos = _repository.ObterPorId(id);
+
+            if (servicos is not null)
+            {
+                servicos.MapearAtualizarServicoDTO(dto);
+                _repository.AtualizarServico(servicos);
+                return Ok(servicos);
+            }
+            else
+                return NotFound(new { Mensagem = "Servico não encontrado" });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            var servico = _repository.ObterPorId(id);
+
+            if (servico is not null)
+            {
+                _repository.DeletarServico(servico);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Servico não encontrado" });
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarSenha(int id, AtualizarNomeServicoDTO dto)
+        {
+            var servico = _repository.ObterPorId(id);
+
+            if (servico is not null)
+            {
+                _repository.AtualizarNome(servico, dto);
+                return Ok(servico);
+            }
+            else
+                return NotFound(new { Mensagem = "Servico não encontrado" });
         }
     }
 }

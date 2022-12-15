@@ -15,7 +15,7 @@ namespace sistema_vendas_ti_adacemy.Repository
         public VendedorRepository(VendasContext context)
         {
             _context = context;
-        } 
+        }
 
         public void Cadastrar(Vendedor vendedor)
         {
@@ -32,7 +32,7 @@ namespace sistema_vendas_ti_adacemy.Repository
         public List<ObterVendedorDTO> ObterPorNome(string nome)
         {
             var vendedores = _context.Vendedores.Where(x => x.Nome.Contains(nome))
-                                                    .Select(x => new ObterVendedorDTO(x) )
+                                                    .Select(x => new ObterVendedorDTO(x))
                                                     .ToList();
             return vendedores;
         }
@@ -48,6 +48,12 @@ namespace sistema_vendas_ti_adacemy.Repository
         {
             _context.Vendedores.Remove(vendedor);
             _context.SaveChanges();
+        }
+
+        public void AtualizarSenha(Vendedor vendedor, AtualizarSenhaVendedorDTO dto)
+        {
+            vendedor.Senha = dto.Senha;
+            AtualizarVendedor(vendedor);
         }
     }
 }

@@ -15,10 +15,16 @@ namespace sistema_vendas_ti_adacemy.Models
 
         public Cliente()
         {
-
         }
 
         public Cliente(CadastrarClienteDTO dto)
+        {
+            Nome = dto.Nome;
+            Login = dto.Login;
+            Senha = dto.Senha;
+        }
+
+        public void MapearAtualizarClienteDTO(AtualizarClienteDTO dto)
         {
             Nome = dto.Nome;
             Login = dto.Login;

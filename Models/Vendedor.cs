@@ -15,7 +15,6 @@ namespace sistema_vendas_ti_adacemy.Models
 
         public Vendedor()
         {
-
         }
 
         public Vendedor(CadastrarVendedorDTO dto)

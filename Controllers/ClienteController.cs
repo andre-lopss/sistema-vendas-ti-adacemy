@@ -27,5 +27,68 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(cliente);
             return Ok(cliente);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                var clienteDTO = new ObterClienteDTO(cliente);
+                return Ok(clienteDTO);
+            }
+            else
+                return NotFound(new { Mensagem = "Cliente não encontrado" });
+        }
+
+        [HttpGet("ObterPorNome/{nome}")]
+        public IActionResult ObterPorNome(string nome)
+        {
+            var cliente = _repository.ObterPorNome(nome);
+            return Ok(cliente);
+        }
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, AtualizarClienteDTO dto)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                cliente.MapearAtualizarClienteDTO(dto);
+                _repository.AtualizarCliente(cliente);
+                return Ok(cliente);
+            }
+            else
+                return NotFound(new { Mensagem = "Cliente não encontrado" });
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                _repository.DeletarCliente(cliente);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Cliente não encontrado" });
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarSenha(int id, AtualizarSenhaClienteDTO dto)
+        {
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                _repository.AtualizarSenha(cliente, dto);
+                return Ok(cliente);
+            }
+            else
+                return NotFound(new { Mensagem = "Vendedor não encontrado" });
+        }
     }
 }
