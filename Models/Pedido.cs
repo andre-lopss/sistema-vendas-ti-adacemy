@@ -14,7 +14,6 @@ namespace sistema_vendas_ti_adacemy.Models
         public Vendedor Vendedor { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public float ValorTotal { get; set; }
 
         public Pedido()
         {
@@ -25,10 +24,7 @@ namespace sistema_vendas_ti_adacemy.Models
         {
             Data = dto.Data;
             VendedorId = dto.VendedorId;
-            Vendedor = dto.Vendedor;
             ClienteId = dto.ClienteId;
-            Cliente = dto.Cliente;
-            ValorTotal = dto.ValorTotal;
         }
     }
 }
