@@ -27,5 +27,19 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(pedido);
             return Ok(pedido);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var pedido = _repository.ObterPorId(id);
+
+            if (pedido is not null)
+            {
+                return Ok(pedido);
+            }
+            else
+                return NotFound(new { Mensagem = "Pedido não encontrado" });
+        }
+
     }
 }
