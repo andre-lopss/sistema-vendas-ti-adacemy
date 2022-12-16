@@ -31,5 +31,32 @@ namespace sistema_vendas_ti_adacemy.Repository
                     .FirstOrDefault(x => x.Id == id);
             return pedido;
         }
+
+        // public List<ObterVendedorDTO> ObterPorNome(string nome)
+        // {
+        //     var vendedores = _context.Vendedores.Where(x => x.Nome.Contains(nome))
+        //                                             .Select(x => new ObterVendedorDTO(x))
+        //                                             .ToList();
+        //     return vendedores;
+        // }
+
+        public Pedido AtualizarPedido(Pedido pedido)
+        {
+            _context.Pedidos.Update(pedido);
+            _context.SaveChanges();
+            return pedido;
+        }
+
+        public void DeletarPedido(Pedido pedido)
+        {
+            _context.Pedidos.Remove(pedido);
+            _context.SaveChanges();
+        }
+
+        // public void AtualizarSenha(Vendedor vendedor, AtualizarSenhaVendedorDTO dto)
+        // {
+        //     vendedor.Senha = dto.Senha;
+        //     AtualizarVendedor(vendedor);
+        // }
     }
 }

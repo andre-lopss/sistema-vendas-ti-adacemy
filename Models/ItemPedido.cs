@@ -23,9 +23,7 @@ namespace sistema_vendas_ti_adacemy.Models
         
         public ItemPedido(CadastrarItemPedidoDTO dto){
             PedidoId = dto.PedidoId;
-            Pedido = dto.Pedido;
             ServicoId = dto.ServicoId;
-            Servico = dto.Servico;
             Quantidade = dto.Quantidade;
             Valor = dto.Valor;
         }

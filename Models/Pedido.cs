@@ -26,5 +26,12 @@ namespace sistema_vendas_ti_adacemy.Models
             VendedorId = dto.VendedorId;
             ClienteId = dto.ClienteId;
         }
+
+        public void MapearAtualizarPedidoDTO(AtualizarPedidoDTO dto)
+        {
+            Data = dto.Data;
+            VendedorId = dto.VendedorId;
+            ClienteId = dto.ClienteId;
+        }
     }
 }
