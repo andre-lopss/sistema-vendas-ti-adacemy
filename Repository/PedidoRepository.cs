@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using sistema_vendas_ti_adacemy.Context;
+using sistema_vendas_ti_adacemy.Dto;
 using sistema_vendas_ti_adacemy.Models;
 
 namespace sistema_vendas_ti_adacemy.Repository
@@ -32,12 +33,12 @@ namespace sistema_vendas_ti_adacemy.Repository
             return pedido;
         }
 
-        // public List<ObterVendedorDTO> ObterPorNome(string nome)
+        // public List<ObterPedidoDTO> ObterPorNomeCliente(string nome)
         // {
-        //     var vendedores = _context.Vendedores.Where(x => x.Nome.Contains(nome))
-        //                                             .Select(x => new ObterVendedorDTO(x))
+        //      var pedidos = _context.Pedidos.Where(x => x.Cliente.Nome.Contains(nome))
+        //                                             .Select(x => new ObterPedidoDTO(x))
         //                                             .ToList();
-        //     return vendedores;
+        //     return pedidos;
         // }
 
         public Pedido AtualizarPedido(Pedido pedido)

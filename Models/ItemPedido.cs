@@ -27,5 +27,13 @@ namespace sistema_vendas_ti_adacemy.Models
             Quantidade = dto.Quantidade;
             Valor = dto.Valor;
         }
+
+        public void MapearAtualizarItemPedidoDTO(AtualizarItemPedidoDTO dto)
+        {
+            PedidoId = dto.PedidoId;
+            ServicoId = dto.ServicoId;
+            Quantidade = dto.Quantidade;
+            Valor = dto.Valor;   
+        }
     }
 }

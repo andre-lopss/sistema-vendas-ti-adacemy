@@ -27,5 +27,35 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(itemPedido);
             return Ok(itemPedido);
         }
+
+        [HttpGet("id")]
+        public IActionResult ObterPorId(int id)
+        {
+            var itemPedido = _repository.ObterPorId(id);
+            if(itemPedido is not null){
+                return Ok(itemPedido);
+            }
+            else
+            {
+                return NotFound(new{ Mensagem = "Item do pedido nâo encontrado"});
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, AtualizarItemPedidoDTO dto)
+        {
+            var itemPedido = _repository.ObterPorId(id);
+
+            if(itemPedido is not null)
+            {
+                itemPedido.MapearAtualizarItemPedidoDTO(dto);
+                _repository.AtualizarItemPedido(itemPedido);
+                return Ok(itemPedido);
+            }else
+            {
+                return NotFound(new{ Mensagem = "Item do pedido nâo encontrado"});
+            }
+
+        }
     }
 }

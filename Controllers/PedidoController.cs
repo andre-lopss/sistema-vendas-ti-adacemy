@@ -41,11 +41,11 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
         
-        // [HttpGet("ObterPorNome/{nome}")]
-        // public IActionResult ObterPorNome(string nome)
+        // [HttpGet("ObterPorNomeCliente/{nomeCliente}")]
+        // public IActionResult ObterPorNomeCliente(string nome)
         // {
-        //     var vendedores = _repository.ObterPorNome(nome);
-        //     return Ok(vendedores);
+        //     var pedidos = _repository.ObterPorNomeCliente(nome);
+        //     return Ok(pedidos);
         // }
 
         [HttpPut("{id}")]
