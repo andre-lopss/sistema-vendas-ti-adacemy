@@ -23,7 +23,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPost]
         public IActionResult Cadastrar(CadastrarPedidoDTO dto)
         {
-            var pedido= new Pedido(dto);
+            var pedido = new Pedido(dto);
             _repository.Cadastrar(pedido);
             return Ok(pedido);
         }
@@ -40,13 +40,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
             else
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
-        
-        // [HttpGet("ObterPorNomeCliente/{nomeCliente}")]
-        // public IActionResult ObterPorNomeCliente(string nome)
-        // {
-        //     var pedidos = _repository.ObterPorNomeCliente(nome);
-        //     return Ok(pedidos);
-        // }
 
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarPedidoDTO dto)
@@ -77,18 +70,32 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
 
-        // [HttpPatch("{id}")]
-        // public IActionResult AtualizarSenha(int id, AtualizarSenhaVendedorDTO dto)
-        // {
-        //     var vendedor = _repository.ObterPorId(id);
+        [HttpPatch("PatchIdVendedor/{id}")]
+        public IActionResult AtualizarIdVendedor(int id, AtualizarIdVendedorPedidoDTO dto)
+        {
+            var pedido = _repository.ObterPorId(id);
 
-        //     if (vendedor is not null)
-        //     {
-        //         _repository.AtualizarSenha(vendedor, dto);
-        //         return Ok(vendedor);
-        //     }
-        //     else
-        //         return NotFound(new { Mensagem = "Vendedor não encontrado" });
-        // }
+            if (pedido is not null)
+            {
+                _repository.AtualizarIdVendedor(pedido, dto);
+                return Ok(pedido);
+            }
+            else
+                return NotFound(new { Mensagem = "Pedido não encontrado" });
+        }
+
+        [HttpPatch("PatchIdCliente/{id}")]
+        public IActionResult AtualizarIdCliente(int id, AtualizarIdClientePedidoDTO dto)
+        {
+            var pedido = _repository.ObterPorId(id);
+
+            if (pedido is not null)
+            {
+                _repository.AtualizarIdCliente(pedido, dto);
+                return Ok(pedido);
+            }
+            else
+                return NotFound(new { Mensagem = "Pedido não encontrado" });
+        }
     }
 }

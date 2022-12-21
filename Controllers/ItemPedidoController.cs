@@ -84,7 +84,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return Ok(itemPedido);
             }
             else
-                return NotFound(new { Mensagem = "Id do pedido não encontrado" });
+                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
         [HttpPatch("PatchIdServico/{id}")]
@@ -98,7 +98,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return Ok(itemPedido);
             }
             else
-                return NotFound(new { Mensagem = "Id do Servico não encontrado" });
+                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
         [HttpPatch("PatchQuantidade/{id}")]
@@ -112,7 +112,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return Ok(itemPedido);
             }
             else
-                return NotFound(new { Mensagem = "Tipo referenciado não pode ser atribuido à quantidade!" });
+                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
         [HttpPatch("PatchValor/{id}")]
@@ -126,7 +126,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return Ok(itemPedido);
             }
             else
-                return NotFound(new { Mensagem = "Tipo referenciado não pode ser atribuido ao valor!" });
+                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
     }
 }

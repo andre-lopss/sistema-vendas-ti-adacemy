@@ -33,14 +33,6 @@ namespace sistema_vendas_ti_adacemy.Repository
             return pedido;
         }
 
-        // public List<ObterPedidoDTO> ObterPorNomeCliente(string nome)
-        // {
-        //      var pedidos = _context.Pedidos.Where(x => x.Cliente.Nome.Contains(nome))
-        //                                             .Select(x => new ObterPedidoDTO(x))
-        //                                             .ToList();
-        //     return pedidos;
-        // }
-
         public Pedido AtualizarPedido(Pedido pedido)
         {
             _context.Pedidos.Update(pedido);
@@ -54,10 +46,16 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.SaveChanges();
         }
 
-        // public void AtualizarSenha(Vendedor vendedor, AtualizarSenhaVendedorDTO dto)
-        // {
-        //     vendedor.Senha = dto.Senha;
-        //     AtualizarVendedor(vendedor);
-        // }
+        public void AtualizarIdVendedor(Pedido pedido, AtualizarIdVendedorPedidoDTO dto)
+        {
+            pedido.VendedorId = dto.VendedorId;
+            AtualizarPedido(pedido);
+        }
+
+        public void AtualizarIdCliente(Pedido pedido, AtualizarIdClientePedidoDTO dto)
+        {
+            pedido.ClienteId = dto.ClienteId;
+            AtualizarPedido(pedido);
+        }
     }
 }
