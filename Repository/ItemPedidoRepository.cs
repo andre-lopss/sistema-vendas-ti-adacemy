@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using sistema_vendas_ti_adacemy.Context;
+using sistema_vendas_ti_adacemy.Dto;
 using sistema_vendas_ti_adacemy.Models;
 
 namespace sistema_vendas_ti_adacemy.Repository
@@ -26,8 +27,8 @@ namespace sistema_vendas_ti_adacemy.Repository
 
         public ItemPedido ObterPorId(int id)
         {
-            var itemPedido = _context.ItensPedidos.Include(x => x.Pedido)                               
-                                                .Include(x => x.Servico)                                 
+            var itemPedido = _context.ItensPedidos.Include(x => x.Pedido)
+                                                .Include(x => x.Servico)
                                                 .FirstOrDefault(x => x.Id == id);
             return itemPedido;
         }
@@ -37,6 +38,37 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.ItensPedidos.Update(itemPedido);
             _context.SaveChanges();
             return itemPedido;
+        }
+
+
+        public void DeletarItemPedido(ItemPedido itemPedido)
+        {
+            _context.ItensPedidos.Remove(itemPedido);
+            _context.SaveChanges();
+        }
+
+        public void AtualizarIdPedido(ItemPedido itemPedido, AtualizarIdPedidoItemPedidoDTO dto)
+        {
+            itemPedido.PedidoId = dto.PedidoId;
+            AtualizarItemPedido(itemPedido);
+        }
+
+        public void AtualizarIdServico(ItemPedido itemPedido, AtualizarIdServicoItemPedidoDTO dto)
+        {
+            itemPedido.ServicoId = dto.ServicoId;
+            AtualizarItemPedido(itemPedido);
+        }
+
+        public void AtualizarQuantidade(ItemPedido itemPedido, AtualizarQuantidadeItemPedidoDTO dto)
+        {
+            itemPedido.Quantidade = dto.Quantidade;
+            AtualizarItemPedido(itemPedido);
+        }
+
+        public void AtualizarValor(ItemPedido itemPedido, AtualizarValorItemPedidoDTO dto)
+        {
+            itemPedido.Valor = dto.Valor;
+            AtualizarItemPedido(itemPedido);
         }
     }
 }
