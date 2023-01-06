@@ -28,8 +28,8 @@ namespace sistema_vendas_ti_adacemy.Repository
         public Pedido ObterPorId(int id)
         {
             var pedido = _context.Pedidos.Include(x => x.Vendedor)
-                    .Include(x => x.Cliente)
-                    .FirstOrDefault(x => x.Id == id);
+                                         .Include(x => x.Cliente)
+                                         .FirstOrDefault(x => x.Id == id);
             return pedido;
         }
 
