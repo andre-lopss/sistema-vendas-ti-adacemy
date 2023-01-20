@@ -22,7 +22,6 @@
                         <button class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </div>
