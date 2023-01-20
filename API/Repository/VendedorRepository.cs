@@ -55,5 +55,10 @@ namespace sistema_vendas_ti_adacemy.Repository
             vendedor.Senha = dto.Senha;
             AtualizarVendedor(vendedor);
         }
+
+        public List<Vendedor> Listar()
+        {
+            return _context.Vendedores.ToList();
+        }
     }
 }
