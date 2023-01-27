@@ -5,17 +5,17 @@
 
 <template>
   <div class="navbar">
-    <div class="dropdown">
-      <button class="dropbtn">Vendedor
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="#">
-          <router-link to="/vendedor/listar">Listar</router-link>
-        </a>
-      </div>
+  <div class="dropdown">
+    <button class="dropbtn">Vendedor 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <router-link to="/vendedor/listar">Listar</router-link>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
     </div>
-  </div>
+  </div> 
+</div>
   <router-view />
 </template>
 
@@ -56,7 +56,7 @@ body {
 
 .navbar a:hover,
 .dropdown:hover .dropbtn {
-  background-color: rgb(14, 191, 138);
+  background-color: rgb(191, 14, 14);
 }
 
 .dropdown-content {

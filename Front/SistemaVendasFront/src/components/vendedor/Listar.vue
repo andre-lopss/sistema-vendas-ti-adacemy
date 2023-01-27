@@ -3,7 +3,7 @@
 
     <div class="col-8">
         <hr />
-        <table class="table table.striped">
+        <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Id</th>
@@ -18,7 +18,7 @@
                     <td>{{ vendedor.nome }}</td>
                     <td>{{ vendedor.login }}</td>
                     <td>
-                        <button class="btn btn-success">Excluir</button>
+                        <button class="btn btn-success" @click="editarVendedor(vendedor.id)">Editar</button>
                         <button class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>
@@ -26,13 +26,13 @@
         </table>
     </div>
 </template>
+
 <script>
 
 import VendedorDataService from '../../services/VendedorDataService';
 export default {
     data() {
-        return 
-        {
+        return {
             vendedores: []
         }
     },
@@ -40,10 +40,12 @@ export default {
         obterVendedores() 
         {
             VendedorDataService.listar()
-                .then(response => 
-                {
+                .then(response => {
                     this.vendedores = response.data;
                 });
+        }, 
+        editarVendedor(id){
+            this.$router.push('/vendedor/' + id);
         }
     },
     mounted(){
