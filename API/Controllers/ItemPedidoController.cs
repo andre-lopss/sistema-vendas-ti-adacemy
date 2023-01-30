@@ -128,5 +128,12 @@ namespace sistema_vendas_ti_adacemy.Controllers
             else
                 return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
+
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var itensPedido = _repository.Listar();
+            return Ok(itensPedido);
+        }
     }
 }

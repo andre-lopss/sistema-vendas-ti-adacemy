@@ -50,6 +50,43 @@ const routes = [
     {
         path: "/servico/:id",
         component: () => import("./components/Servico/Atualizar.vue")
+    },
+    {
+        path: "/pedido/listar",
+        component: () => import("./components/Pedido/Listar.vue")
+    },
+    {
+        path: "/pedido/cadastrar",
+        component: () => import("./components/Pedido/Cadastrar.vue")
+    },
+    {
+        path: "/pedido/atualizar",
+        component: () => import("./components/Pedido/Atualizar.vue")
+    },
+    {
+        path: "/pedido/:id",
+        component: () => import("./components/Pedido/Atualizar.vue")
+    },
+    {
+        path: "/pedido/resumo/:id",
+        component: () => import("./components/Pedido/Resumo.vue")
+    },
+    {
+        path: "/itemPedido/listar",
+        component: () => import("./components/ItemPedido/Listar.vue")
+    },
+    {
+        path: "/itemPedido/cadastrar",
+        component: () => import("./components/ItemPedido/Cadastrar.vue")
+    },
+    {
+        path: "/itemPedido/atualizar",
+        component: () => import("./components/ItemPedido/Atualizar.vue")
+    }
+    ,
+    {
+        path: "/itemPedido/:id",
+        component: () => import("./components/itemPedido/Atualizar.vue")
     }
 ];
 const router = createRouter({

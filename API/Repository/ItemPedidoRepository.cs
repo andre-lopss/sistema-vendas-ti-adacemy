@@ -70,5 +70,12 @@ namespace sistema_vendas_ti_adacemy.Repository
             itemPedido.Valor = dto.Valor;
             AtualizarItemPedido(itemPedido);
         }
+
+        public List<ItemPedido> Listar()
+        {
+            return _context.ItensPedidos.Include(x => x.Pedido)
+                                   .Include(x => x.Servico)
+                                   .ToList();
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace sistema_vendas_ti_adacemy.Repository
         {
             _context = context;
         }
-        
+
         public Pedido Cadastrar(Pedido pedido)
         {
             _context.Pedidos.Add(pedido);
@@ -56,6 +56,13 @@ namespace sistema_vendas_ti_adacemy.Repository
         {
             pedido.ClienteId = dto.ClienteId;
             AtualizarPedido(pedido);
+        }
+
+        public List<Pedido> Listar()
+        {
+            return _context.Pedidos.Include(x => x.Vendedor)
+                                   .Include(x => x.Cliente)
+                                   .ToList();
         }
     }
 }
