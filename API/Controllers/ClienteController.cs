@@ -90,5 +90,12 @@ namespace sistema_vendas_ti_adacemy.Controllers
             else
                 return NotFound(new { Mensagem = "Vendedor não encontrado" });
         }
+
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var clientes = _repository.Listar();
+            return Ok(clientes);
+        }
     }
 }

@@ -8,8 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.2.5",
+    "axios": "^1.2.6",
     "bootstrap": "^5.2.3",
+    "bootstrap-vue": "^2.23.1",
     "popper.js": "^1.16.1",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

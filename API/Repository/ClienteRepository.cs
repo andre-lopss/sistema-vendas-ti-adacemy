@@ -55,5 +55,9 @@ namespace sistema_vendas_ti_adacemy.Repository
             cliente.Senha = dto.Senha;
             AtualizarCliente(cliente);
         }
+        public List<Cliente> Listar()
+        {
+            return _context.Clientes.ToList();
+        }
     }
 }

@@ -1,9 +1,9 @@
 <template>
-    <h3>Atualizar Vendedor</h3>
+    <h3 class="text-center">ATUALIZAR VENDEDOR</h3>
 
     <div class="form" style="padding: 1%;">
         <hr/>
-        <div class="col-4">
+        <div class="container col-4">
             <div>
                 <label class="form-label">Id</label>
                 <input type="text" disabled v-model="vendedor.id" class="form-control">

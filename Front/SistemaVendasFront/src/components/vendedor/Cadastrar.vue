@@ -1,9 +1,9 @@
 <template>
-    <h3>Cadastro de vendedores</h3>
+    <h3 class="text-center">CADASTRO DE VENDEDORES</h3>
 
     <div class="form" style="padding: 1%;">
         <hr />
-        <div class="col-4">
+        <div class="container col-6">
             <div>
                 <label class="form-label">Nome</label>
                 <input type="text" required v-model="vendedor.nome" class="form-control" placeholder="Nome">
