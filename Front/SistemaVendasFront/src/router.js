@@ -29,11 +29,27 @@ const routes = [
     {
         path: "/cliente/atualizar",
         component: () => import("./components/Cliente/Atualizar.vue")
-    }
-    ,
+    },
     {
         path: "/cliente/:id",
         component: () => import("./components/Cliente/Atualizar.vue")
+    },
+    {
+        path: "/servico/listar",
+        component: () => import("./components/Servico/Listar.vue")
+    },
+    {
+        path: "/servico/cadastrar",
+        component: () => import("./components/servico/Cadastrar.vue")
+    },
+    {
+        path: "/servico/atualizar",
+        component: () => import("./components/Servico/Atualizar.vue")
+    }
+    ,
+    {
+        path: "/servico/:id",
+        component: () => import("./components/Servico/Atualizar.vue")
     }
 ];
 const router = createRouter({

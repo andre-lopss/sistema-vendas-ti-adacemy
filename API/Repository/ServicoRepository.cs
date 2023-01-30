@@ -55,5 +55,10 @@ namespace sistema_vendas_ti_adacemy.Repository
             servico.Nome = dto.Nome;
             AtualizarServico(servico);
         }
+
+        public List<Servico> Listar()
+        {
+            return _context.Servicos.ToList();
+        }
     }
 }

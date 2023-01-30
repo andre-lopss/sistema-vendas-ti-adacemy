@@ -34,6 +34,7 @@
               </ul>
             </div>
           </li>
+
           <li>
             <div class="dropdown">
               <button
@@ -46,6 +47,23 @@
                 </li>
                 <li>
                   <router-link class="dropdown-item" to="/cliente/cadastrar">Cadastrar</router-link>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Serviço
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>      
+                  <router-link class="dropdown-item" to="/servico/listar">Listar</router-link> 
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/servico/cadastrar">Cadastrar</router-link>
                 </li>
               </ul>
             </div>
