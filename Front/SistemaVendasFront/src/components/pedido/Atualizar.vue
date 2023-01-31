@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 import PedidoDataService from '../../services/PedidoDataService';
 
 export default {

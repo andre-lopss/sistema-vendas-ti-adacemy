@@ -11,9 +11,9 @@
         </div>
         <hr />
         <div class="row">
-            <div class="col-3" >
-                <h3>Seus Dados</h3>
-                <div><p>Id do vendedor: {{  }}</p></div>
+            <div class="col-3">
+                <h3 >Seus Dados</h3>
+                <div><p>Vendedor: {{pedido.data}}</p></div>
                 <div></div>
             </div>
             <div class="col-3">
@@ -36,13 +36,11 @@
         
         <div class="row" v-fo>
             <div class="col-10">
-                <div>{{ }}</div>
             </div>
             <div class="col-2">
                 <div class="pull-right">@(item.Quantidade)</div>
             </div>
         </div>
-        }
     </div>
 </div>
 </template>
@@ -50,6 +48,7 @@
 <script>
 
 import PedidoDataService from '../../services/PedidoDataService';
+
 export default {
     data() {
         return {
@@ -62,11 +61,10 @@ export default {
                 .then((response) =>{
                     this.pedido = response.data;
                 });
-        },
-    
+            }
     },
     mounted(){
-        this.obterPedido();
+        this.obterPedido(this.$route.params.id);
     }
 }
 </script>

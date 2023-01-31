@@ -14,7 +14,7 @@ class ItemPedidoDataService{
     }
     
     obterPorId(id){
-        return http.get(`/itemPedido/${id}`);
+        return http.get(`/ItemPedido/${id}`);
     }
 
     async deletar(id){
