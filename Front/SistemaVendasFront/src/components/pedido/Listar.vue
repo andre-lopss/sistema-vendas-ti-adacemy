@@ -26,7 +26,7 @@
 
                         <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
 
-                        <button class="btn btn-default"  @click="resumoPedido">
+                        <button class="btn btn-default"  @click="resumoPedido(pedido.id)">
                             <span class="material-symbols-outlined">
                                 picture_as_pdf
                             </span>

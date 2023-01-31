@@ -9,7 +9,7 @@
                 <input type="text" disabled v-model="itemPedido.id" class="form-control">
             </div>
             <div>
-                <label class="form-label">Pedido: </label>
+                <label class="form-label">N° do Pedido</label>
                 <input type="number" required v-model="itemPedido.pedidoId" class="form-control">
             </div>
             <div>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-
 import ItemPedidoDataService from '../../services/ItemPedidoDataService';
 
 export default {

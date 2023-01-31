@@ -82,11 +82,10 @@ const routes = [
     {
         path: "/itemPedido/atualizar",
         component: () => import("./components/ItemPedido/Atualizar.vue")
-    }
-    ,
+    } ,
     {
-        path: "/itemPedido/:id",
-        component: () => import("./components/itemPedido/Atualizar.vue")
+        path: "/ItemPedido/:id",
+        component: () => import("./components/ItemPedido/Atualizar.vue")
     }
 ];
 const router = createRouter({
