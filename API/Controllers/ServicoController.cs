@@ -28,6 +28,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(servico);
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var servicos = _repository.Listar();
+            return Ok(servicos);
+        }
+
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
@@ -73,27 +80,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
             }
             else
                 return NotFound(new { Mensagem = "Servico não encontrado" });
-        }
-
-        [HttpPatch("{id}")]
-        public IActionResult AtualizarSenha(int id, AtualizarNomeServicoDTO dto)
-        {
-            var servico = _repository.ObterPorId(id);
-
-            if (servico is not null)
-            {
-                _repository.AtualizarNome(servico, dto);
-                return Ok(servico);
-            }
-            else
-                return NotFound(new { Mensagem = "Servico não encontrado" });
-        }
-
-        [HttpGet("Listar")]
-        public IActionResult Listar()
-        {
-            var servicos = _repository.Listar();
-            return Ok(servicos);
         }
     }
 }

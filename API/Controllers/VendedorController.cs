@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sistema_vendas_ti_adacemy.Repository;
 using sistema_vendas_ti_adacemy.Dto;
@@ -48,6 +44,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
             var vendedores = _repository.ObterPorNome(nome);
             return Ok(vendedores);
         }
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarVendedorDTO dto)
         {

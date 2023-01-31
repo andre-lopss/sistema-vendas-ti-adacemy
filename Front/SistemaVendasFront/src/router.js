@@ -86,7 +86,16 @@ const routes = [
     {
         path: "/ItemPedido/:id",
         component: () => import("./components/ItemPedido/Atualizar.vue")
-    }
+    },
+    {
+        path: "/ItemPedido/resumo/:id",
+        component: () => import("./components/ItemPedido/Resumo.vue")
+    },
+
+    {
+        path: "/pedido/:pedidoId/itemPedido/listar",
+        component: () => import("./components/ItemPedido/Listar.vue")
+    },
 ];
 const router = createRouter({
     history: createWebHistory(),

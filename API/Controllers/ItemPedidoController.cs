@@ -28,6 +28,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(itemPedido);
         }
 
+        [HttpGet("Listar")]
+        public IActionResult ObterTodos()
+        {
+            var itensPedidos = _repository.ObterTodos();
+            return Ok(itensPedidos);
+        }
+
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
@@ -40,6 +47,17 @@ namespace sistema_vendas_ti_adacemy.Controllers
             {
                 return NotFound(new { Mensagem = "Item do pedido nâo encontrado" });
             }
+        }
+
+        [HttpGet("pedido/{id}")]
+        public IActionResult ObterPorPedido(int id)
+        {
+            var ItensPedido = _repository.ObterPedido(id);
+            if(ItensPedido is not null)
+            {
+                return Ok(ItensPedido);
+            }
+            return NotFound(new {mensagem = $"Não foi encontrado nenhum item de pedido do pedido de id {id}"});
         }
 
         [HttpPut("{id}")]
@@ -129,11 +147,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
-        [HttpGet("Listar")]
-        public IActionResult Listar()
-        {
-            var itensPedidos = _repository.Listar();
-            return Ok(itensPedidos);
-        }
+
     }
 }

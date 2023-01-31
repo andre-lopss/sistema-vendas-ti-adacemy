@@ -22,7 +22,11 @@
                     <td>{{ pedido.vendedor.id }}</td>
                     <td>{{ pedido.cliente.id }}</td>
                     <td class="d-flex justify-content-between">
-                        <button class="btn btn-success" @click="editarPedido(pedido.id)">Editar</button>
+                        <button class="btn btn-primary" @click="editarPedido(pedido.id)">Editar</button>
+
+                        <!-- <button class="btn btn-success" @click="buscarItensPedido(pedido.id)">Itens</button> -->
+
+                        <button class="btn btn-primary" @click="buscarItensPedido(pedido.id)">Itens Pedido</button>
 
                         <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
 
@@ -56,6 +60,9 @@ export default {
                     this.pedidos = response.data;
                 });
         }, 
+        buscarItensPedido(id){
+            this.$router.push('/pedido/'+id+'/itemPedido/listar')
+        },
         editarPedido(id){
             this.$router.push('/pedido/' + id);
         },

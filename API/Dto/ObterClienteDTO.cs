@@ -12,10 +12,10 @@ namespace sistema_vendas_ti_adacemy.Dto
         public string Nome { get; set; }
         public string Login { get; set; }
 
-        public ObterClienteDTO(Cliente vendedor){
-            Id = vendedor.Id;
-            Nome = vendedor.Nome;
-            Login = vendedor.Login;
+        public ObterClienteDTO(Cliente cliente){
+            Id = cliente.Id;
+            Nome = cliente.Nome;
+            Login = cliente.Login;
         }
     }
 }

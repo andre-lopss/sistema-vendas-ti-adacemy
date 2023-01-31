@@ -5,7 +5,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-12">
-                    <h3>Nº do Pedido: {{ pedido.id }} </h3>
+                    <h3>Nº do Pedido: {{ itemPedido.pedidoId }} </h3>
                 </div>
             </div>
             <hr />
@@ -13,27 +13,28 @@
                 <div class="col-3">
                     <h3>Seus Dados</h3>
                     <div>
-                        <p><strong>Vendedor - {{ pedido.vendedorId }}</strong></p>
-                        <p>Nome: {{ pedido.vendedor.nome }}</p>
-                        <p>Login: {{ pedido.vendedor.login }}</p>
+                        <!-- <p><strong>Vendedor - {{ pedido.vendedor }}</strong></p> --> 
+                        <p>Nome: {{ itemPedido.pedido.vendedorId }}</p> 
+                        <!-- <p>Login: {{ pedido.vendedor.login }}</p>
                         <p><strong>Cliente - {{ pedido.clienteId }}</strong></p>
                         <p>Nome: {{ pedido.cliente.nome }}</p>
-                        <p>Login: {{ pedido.cliente.login }}</p>
+                        <p>Login: {{ pedido.cliente.login }}</p> -->
                     </div>
                 </div>
                 <div class="col-3">
                     @Model.Cadastro.Email
                 </div>
                 <div class="col-6">
-                    <h3>Endereço de Entrega</h3>
-                    <div>@Model.Cadastro.Endereco, @Model.Cadastro.Complemento - @Model.Cadastro.Bairro - CEP:
-                        @Model.Cadastro.CEP - @Model.Cadastro.Municipio - @Model.Cadastro.UF - Brasil</div>
+                    <h3>Serviço</h3>
+                    <div>{{ itemPedido.servico.nome }}</div>
+                    <div>{{ itemPedido.servico.descricao }}</div>
                 </div>
             </div>
             <hr />
             <div class="row">
                 <div class="col-8">
                     <h3>Item</h3>
+                    {{ itemPedido.id }}
                 </div>
                 <div class="col-4">
                     <h3>Quantidade</h3>

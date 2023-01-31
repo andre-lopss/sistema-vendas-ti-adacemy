@@ -33,6 +33,15 @@ namespace sistema_vendas_ti_adacemy.Repository
             return itemPedido;
         }
 
+        public List<ObterItemPedidoComIdDTO> ObterPedido(int id)
+        {
+            var itensPedido = _context.ItensPedidos.Include(x => x.Servico)
+                                                  .Where(x => x.PedidoId == id)
+                                                  .Select(x => new ObterItemPedidoComIdDTO(x))
+                                                  .ToList();
+            return itensPedido; 
+        }
+
         public ItemPedido AtualizarItemPedido(ItemPedido itemPedido)
         {
             _context.ItensPedidos.Update(itemPedido);
@@ -71,10 +80,11 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarItemPedido(itemPedido);
         }
 
-        public List<ItemPedido> Listar()
+        public List<ObterItemPedidoComIdDTO> ObterTodos()
         {
             return _context.ItensPedidos.Include(x => x.Pedido)
                                    .Include(x => x.Servico)
+                                   .Select(x => new ObterItemPedidoComIdDTO(x))
                                    .ToList();
         }
     }
