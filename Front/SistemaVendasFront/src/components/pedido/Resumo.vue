@@ -35,8 +35,8 @@
         </div>
         
         <div class="row" v-fo>
-            <div class="col-10" v-for="(itemPedido, pedido, servico, index) in itensPedidos" :key="index">
-                <div>{{ itemPedido.servico.nome }}</div>
+            <div class="col-10">
+                <div>{{ }}</div>
             </div>
             <div class="col-2">
                 <div class="pull-right">@(item.Quantidade)</div>
@@ -63,12 +63,7 @@ export default {
                     this.pedido = response.data;
                 });
         },
-        atualizarPedido(){
-            PedidoDataService.atualizar(this.pedido.id, this.pedido)
-                                .then(() => {
-                                    this.$router.push('listar');
-                                });
-        }
+    
     },
     mounted(){
         this.obterPedido();

@@ -2,14 +2,9 @@
     <h3 class="text-center">ATUALIZAR ITEM DO PEDIDO</h3>
 
     <div class="form" style="padding: 1%;">
-        <hr/>
-        <div class="container col-4">
+        <div class="container col-8">
             <div>
-                <label class="form-label">Id</label>
-                <input type="text" disabled v-model="itemPedido.id" class="form-control">
-            </div>
-            <div>
-                <label class="form-label">Pedido: </label>
+                <label class="form-label">N° do Pedido</label>
                 <input type="number" required v-model="itemPedido.pedidoId" class="form-control">
             </div>
             <div>
@@ -22,15 +17,15 @@
             </div>
             <div>
                 <label class="form-label">Valor: </label>
-                <input type="number" required v-model="itemPedido.valor" class="form-control">
+                <input type="number" format="currency" precision="2" required v-model="itemPedido.valor"
+                    class="form-control">
             </div>
-            <button class="btn btn-success" @click="atualizarItemPedido" style="margin-top: 4%">Atualizar</button>
+            <button class="btn btn-danger" @click="cadastrarItemPedido" style="margin-top: 4%">Cadastrar</button>
         </div>
     </div>
 </template>
 
 <script>
-
 import ItemPedidoDataService from '../../services/ItemPedidoDataService';
 
 export default {
@@ -39,21 +34,21 @@ export default {
             itemPedido: {}
         }
     },
-    methods:{
-        obterItemPedido(id){
+    methods: {
+        obterItemPedido(id) {
             ItemPedidoDataService.obterPorId(id)
-                .then((response) =>{
+                .then((response) => {
                     this.itemPedido = response.data;
                 });
         },
-        atualizarItemPedido(){
+        atualizarPedido() {
             ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
-                                .then(() => {
-                                    this.$router.push('listar');
-                                });
+                .then(() => {
+                    this.$router.push('listar');
+                });
         }
     },
-    mounted(){
+    mounted() {
         this.obterItemPedido(this.$route.params.id);
     }
 }

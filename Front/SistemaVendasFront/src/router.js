@@ -80,7 +80,7 @@ const routes = [
         component: () => import("./components/ItemPedido/Cadastrar.vue")
     },
     {
-        path: "/itemPedido/atualizar",
+        path: "/ItemPedido/atualizar",
         component: () => import("./components/ItemPedido/Atualizar.vue")
     }
     ,

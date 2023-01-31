@@ -28,7 +28,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(itemPedido);
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
             var itemPedido = _repository.ObterPorId(id);
@@ -132,8 +132,8 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpGet("Listar")]
         public IActionResult Listar()
         {
-            var itensPedido = _repository.Listar();
-            return Ok(itensPedido);
+            var itensPedidos = _repository.Listar();
+            return Ok(itensPedidos);
         }
     }
 }

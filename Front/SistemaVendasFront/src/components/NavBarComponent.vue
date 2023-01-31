@@ -16,9 +16,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <span class="material-symbols-outlined" style="font-size: 40px;">
+            <!-- <span class="material-symbols-outlined" style="font-size: 40px;">
 home
-</span>
+</span> -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
             <div class="dropdown">
