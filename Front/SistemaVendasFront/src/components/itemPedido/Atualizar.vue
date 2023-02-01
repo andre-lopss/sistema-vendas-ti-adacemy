@@ -9,7 +9,7 @@
             </div>
             <div>
                 <label class="form-label">N° do Pedido</label>
-                <input type="number" required v-model="itemPedido.pedidoId" class="form-control">
+                <input type="number" disabled v-model="itemPedido.pedidoId" class="form-control">
             </div>
             <div>
                 <label class="form-label">Serviço: </label>
@@ -24,7 +24,7 @@
                 <input type="number" format="currency" precision="2" required v-model="itemPedido.valor"
                     class="form-control">
             </div>
-            <button class="btn btn-danger" @click="cadastrarItemPedido" style="margin-top: 4%">Cadastrar</button>
+            <button class="btn btn-danger" @click="atualizarItemPedido" style="margin-top: 4%">Atualizar</button>
         </div>
     </div>
 </template>
@@ -35,7 +35,7 @@ import ItemPedidoDataService from '../../services/ItemPedidoDataService';
 export default {
     data() {
         return {
-            itemPedido: {}
+            itemPedido: {},
         }
     },
     methods: {
@@ -45,14 +45,15 @@ export default {
                     this.itemPedido = response.data;
                 });
         },
-        atualizarPedido() {
+        atualizarItemPedido() {
+            var idPedido = this.itemPedido.pedidoId
             ItemPedidoDataService.atualizar(this.itemPedido.id, this.itemPedido)
                 .then(() => {
-                    this.$router.push('listar');
+                    this.$router.push('/pedido/'+ idPedido + '/itemPedido/listar')
                 });
         }
     },
-    mounted() {
+    beforeMount() {
         this.obterItemPedido(this.$route.params.id);
     }
 }

@@ -78,7 +78,8 @@ home
                 Pedido
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li>      
+                <li>     
+                  <router-link to="/pedido/listar">Listar itens pedido</router-link> 
                   <router-link class="dropdown-item" to="/pedido/listar">Listar</router-link> 
                 </li>
                 <li>

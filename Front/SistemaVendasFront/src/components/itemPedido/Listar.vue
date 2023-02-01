@@ -3,7 +3,7 @@
 
     <div class="col-7 d-flex flex-column align-items-center">
     <!-- <h2>Pedido {{ pedido.id }} - {{ pedido.vendedor.nome }} - {{ pedido.cliente.nome }}</h2> -->
-    <p v-if="itensPedido.length === 0">Esse pedido não possui nenhum item</p>
+    <p v-if="ItensPedido.length === 0">Esse pedido não possui nenhum item</p>
     <table class="table table-striped" v-else>
         <thead>
           <tr>
@@ -14,59 +14,57 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(itemPedido, index) in itensPedido" :key="index">
+          <tr v-for="(itemPedido, servico,  index) in ItensPedido" :key="index">
             <th scope="row">{{ itemPedido.id }}</th>
-            <td scope="row">{{ itemPedido.servico.nome }}</td>
+            <td scope="row">{{ itemPedido.pedidoId }}</td>
             <td>{{ itemPedido.valor }}</td>
             <td>{{ itemPedido.quantidade }}</td>
             <td>
-              <button class="btn btn-success" @click="editarPedido(pedido.id, itemPedido.id)">Editar</button>
-              <button class="btn btn-danger" @click="excluirPedido(item)">Excluir</button>
+              <button class="btn btn-success" @click="editarItemPedido(itemPedido.id)">Editar</button>
+              <button class="btn btn-danger" @click="excluirItemPedido(itemPedido)">Excluir</button>
             </td>
           </tr>
         </tbody>
     </table>
-    <button class="btn btn-primary" @click="adicionarNovoItem(pedido.id)">Adicionar novo item</button>
+    <router-link class="btn btn-primary" to="/pedido/listar">Voltar</router-link>
   </div>
 </template>
 
 <script>
 
-import ItemPedidoDataService from '../../services/ItemPedidoDataService'
-import PedidoDataService from '../../services/PedidoDataService'
-
+import ItemPedidoDataService from '../../services/ItemPedidoDataService';
+import PedidoDataService from '../../services/PedidoDataService.js';
 export default {
+  name: "listarItemPedidos",
   data() {
     return{
-      itensPedido: [],
+      ItensPedido: [],
       pedido: {}
     }
   },
   methods: {
     obterItensPedido() {
-      ItemPedidoDataService.listarPorPedido(this.$route.params.id)
-        .then(response => this.itensPedido = response.data)
+      ItemPedidoDataService.listarPorPedido(this.$route.params.pedidoId)
+        .then(response => this.ItensPedido = response.data)
     },
-    obterPedidos() {
-      PedidoDataService.obterPorId(this.$route.params.pedidoId)
-        .then(response => this.pedido = response.data)
+    obterPedidos(pedidoId) {
+      PedidoDataService.obterPorId(pedidoId)
+        .then(response => this.Pedido = response.data)
     },
-    editarPedido(id){
-      this.$router.push(`/pedido/:pedidoId/itemPedido/atualizar/` + id)
+    editarItemPedido(id){
+      this.$router.push('/itemPedido/' + id);
     },
-    async excluirPedido(pedido){
-      if(confirm(`Tem certeza que deseja excluir o pedido ${pedido.id}`)){
-        await ItemPedidoDataService.deletar(pedido.id)
-        this.$router.push("/pedido/listar")
-      }
+
+    async excluirItemPedido(itemPedido){
+        if(confirm(`Tem certeza que deseja excluir o item do pedido N°: ${itemPedido.id}?`)){
+          await ItemPedidoDataService.deletar(itemPedido.id);
+          this.obterItensPedidos();
+        }
     },
-    adicionarNovoItem(idPedido, IdItem){
-      this.$router.push("/pedido/"+idPedido+"/itemPedido/atualizar/"+IdItem)
-    }
   },
   beforeMount(){
     this.obterItensPedido()
-    this.obterPedidos()
+    this.obterPedidos(this.$route.params.id)
   }
 }
 </script>

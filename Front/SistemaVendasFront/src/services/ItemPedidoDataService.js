@@ -14,7 +14,7 @@ class ItemPedidoDataService{
     }
 
     atualizar(id, itemPedido){
-        return http.put(`/ItemPedido/${id}`, itemPedido)
+        return http.put(`/itemPedido/${id}`, itemPedido)
     }
     
     obterPorId(id){

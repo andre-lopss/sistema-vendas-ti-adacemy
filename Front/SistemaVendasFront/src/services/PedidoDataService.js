@@ -5,12 +5,12 @@ class PedidoDataService{
         return http.get("/pedido/listar")
     }
 
-    cadastrar(servico){
-        return http.post('/pedido', servico);
+    cadastrar(pedido){
+        return http.post('/pedido', pedido);
     }
 
-    atualizar(id, servico){
-        return http.put(`/pedido/${id}`, servico)
+    atualizar(id, pedido){
+        return http.put(`/pedido/${id}`, pedido)
     }
     
     obterPorId(id){

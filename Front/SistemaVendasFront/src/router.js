@@ -94,7 +94,7 @@ const routes = [
 
     {
         path: "/pedido/:pedidoId/itemPedido/listar",
-        component: () => import("./components/ItemPedido/Listar.vue")
+        component: () => import('./components/itemPedido/listar.vue')
     },
 ];
 const router = createRouter({
