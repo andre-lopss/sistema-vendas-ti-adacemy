@@ -96,6 +96,12 @@ const routes = [
         path: "/pedido/:pedidoId/itemPedido/listar",
         component: () => import('./components/itemPedido/listar.vue')
     },
+    ,
+
+    {
+        path: "/pedido/:pedidoId/itemPedido/cadastrar",
+        component: () => import('./components/itemPedido/cadastrar.vue')
+    },
 ];
 const router = createRouter({
     history: createWebHistory(),

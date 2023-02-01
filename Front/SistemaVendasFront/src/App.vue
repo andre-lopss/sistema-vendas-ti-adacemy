@@ -18,5 +18,8 @@ export default{
 }
 </script>
 
-<style scoped>
+<style>
+.fonteColor{
+  color: white;
+}
 </style>

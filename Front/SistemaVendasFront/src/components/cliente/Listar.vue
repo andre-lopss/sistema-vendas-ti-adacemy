@@ -1,10 +1,13 @@
 <template>
-    <h3 class="text-center">LISTAGEM DE CLIENTES</h3>
+    <h3 class="text-center" style="margin-top: 10px;">LISTAGEM DE CLIENTES</h3>
 
-    <div class="container col-8">
-        <hr />
+    <hr />
+
+    <div class="container col-4"> 
+        <router-link class="btn btn-success" to="/cliente/cadastrar" style="margin-bottom: 10px;">Cadastrar cliente</router-link>
+        
         <table class="table table-striped">
-            <thead class="bg-primary thead-dark">
+            <thead class="bg-primary thead-dark fonteColor">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>

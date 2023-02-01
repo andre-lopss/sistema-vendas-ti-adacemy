@@ -1,6 +1,5 @@
 <template>
-
-    <h3 class="container col-10">Resumo do Pedido</h3>
+    <h3 class="container col-10" style="margin-top: 10px;">Resumo do Pedido</h3>
     <div class="panel panel-default container col-10" style="border: 1px solid grey ;">
         <div class="panel-body">
             <div class="row">

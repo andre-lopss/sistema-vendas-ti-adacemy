@@ -1,23 +1,24 @@
 <template>
-    <h3 class="text-center">CADASTRO DE CLIENTES</h3>
+    <h3 class="text-center" style="margin-top: 10px;">CADASTRO DE CLIENTES</h3>
 
-    <div class="form" style="padding: 1%;">
-        <hr />
-        <div class="container col-6">
-            <div>
-                <label class="form-label">Nome</label>
-                <input type="text" required v-model="cliente.nome" class="form-control" placeholder="Nome">
-            </div>
-            <div>
-                <label class="form-label">Login</label>
-                <input type="text" required v-model="cliente.login" class="form-control" placeholder="Login">
-            </div>
-            <div>
-                <label class="form-label">Senha</label>
-                <input type="password" required v-model="cliente.senha" class="form-control">
-            </div>
-            <button class="btn btn-danger" @click="cadastrarCliente" style="margin-top: 4%">Cadastrar</button>
+    <hr />
+
+    <div class="container col-3">
+        <div>
+            <label class="form-label">Nome</label>
+            <input type="text" required v-model="cliente.nome" class="form-control" placeholder="Nome">
         </div>
+
+        <div>
+            <label class="form-label">Login</label>
+            <input type="text" required v-model="cliente.login" class="form-control" placeholder="Login">
+        </div>
+
+        <div>
+            <label class="form-label">Senha</label>
+            <input type="password" required v-model="cliente.senha" class="form-control" placeholder="Senha">
+        </div>
+        <button class="btn btn-success" @click="cadastrarCliente" style="margin-top: 4%">Cadastrar</button>
     </div>
 </template>
 
@@ -36,19 +37,14 @@ export default {
     },
     methods: {
         cadastrarCliente() {
-            if (this.cliente.nome == '' || this.cliente.login == '' || this.cliente.senha == '') {
-                alert("Algum campo está vazio!")
-            } else {
-                var data = {
-                    nome: this.cliente.nome,
-                    login: this.cliente.login,
-                    senha: this.cliente.senha
-                };
-                ClienteDataService.cadastrar(data)
-                    .then(() => {
-                        this.$router.push('listar');
-                    });
-            }
+            var data = {
+                nome: this.cliente.nome,
+                login: this.cliente.login,
+                senha: this.cliente.senha
+            };
+            ClienteDataService.cadastrar(data).then(() => {
+                this.$router.push('listar');
+            });
         }
     }
 }
