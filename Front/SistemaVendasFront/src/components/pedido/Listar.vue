@@ -1,9 +1,10 @@
 <template>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <h3 class="text-center">LISTAGEM DE PEDIDOS</h3>
 
-    <div class="container col-8">
+    <div class="container col-10">
         <hr />
         <table class="table table-striped">
             <thead class="bg-primary thead-dark">
@@ -16,21 +17,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(pedido, cliente, vendedor, index) in pedidos" :key="index">
+                <tr v-for="(pedido, index) in pedidos" :key="index">
                     <td>{{ pedido.id }}</td>
                     <td>{{ pedido.data }}</td>
-                    <td>{{ pedido.vendedor.id }}</td>
-                    <td>{{ pedido.cliente.id }}</td>
+                    <td>{{ pedido.vendedor.nome }}</td>
+                    <td>{{ pedido.cliente.nome }}</td>
                     <td class="d-flex justify-content-between">
                         <button class="btn btn-primary" @click="editarPedido(pedido.id)">Editar</button>
 
-                        <!-- <button class="btn btn-success" @click="buscarItensPedido(pedido.id)">Itens</button> -->
+                        <div class="dropdown">
+                            <button style="font-size: 1rem; height: 100%;" class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Itens Pedido
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" @click="buscarItensPedido(pedido.id)">Listar</a></li>
+                                <router-link class="dropdown-item" to="/itemPedido/cadastrar">Cadastrar</router-link>
+                            </ul>
+                        </div>
 
-                        <button class="btn btn-primary" @click="buscarItensPedido(pedido.id)">Itens Pedido</button>
+                        <!-- <button class="btn btn-success" @click="buscarItensPedido(pedido.id)">Itens Pedido</button>
+
+                        <router-link class="btn btn-danger success" to="/itemPedido/cadastrar">Cadastrar</router-link> -->
 
                         <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
 
-                        <button class="btn btn-default"  @click="resumoPedido(pedido.id)">
+                        <button class="btn btn-default" @click="resumoPedido(pedido.id)">
                             <span class="material-symbols-outlined">
                                 picture_as_pdf
                             </span>
@@ -53,30 +65,29 @@ export default {
         }
     },
     methods: {
-        obterPedidos() 
-        {
+        obterPedidos() {
             PedidoDataService.listar()
                 .then(response => {
                     this.pedidos = response.data;
                 });
-        }, 
-        buscarItensPedido(id){
-            this.$router.push('/pedido/'+id+'/itemPedido/listar')
         },
-        editarPedido(id){
+        buscarItensPedido(id) {
+            this.$router.push('/pedido/' + id + '/itemPedido/listar')
+        },
+        editarPedido(id) {
             this.$router.push('/pedido/' + id);
         },
-        resumoPedido(id){
+        resumoPedido(id) {
             this.$router.push('/pedido/resumo/' + id);
         },
-        async excluirPedido(pedido){
-            if(confirm(`Tem certeza que deseja excluir o pedido N°: ${pedido.id}?`)){
+        async excluirPedido(pedido) {
+            if (confirm(`Tem certeza que deseja excluir o pedido N°: ${pedido.id}?`)) {
                 await PedidoDataService.deletar(pedido.id);
                 this.obterPedidos();
             }
         }
     },
-    mounted(){
+    mounted() {
         this.obterPedidos();
     }
 }

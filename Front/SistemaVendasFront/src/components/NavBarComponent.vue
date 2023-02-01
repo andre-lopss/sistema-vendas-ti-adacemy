@@ -79,7 +79,6 @@ home
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>     
-                  <router-link to="/pedido/listar">Listar itens pedido</router-link> 
                   <router-link class="dropdown-item" to="/pedido/listar">Listar</router-link> 
                 </li>
                 <li>
@@ -89,7 +88,7 @@ home
             </div>
           </li>
 
-          <li>
+          <!-- <li>
             <div class="dropdown">
               <button
                 class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,7 +103,7 @@ home
                 </li>
               </ul>
             </div>
-          </li>
+          </li> -->
 
         </ul>
       </div>

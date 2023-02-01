@@ -10,16 +10,16 @@ namespace sistema_vendas_ti_adacemy.Dto
     {
 
         public int Id { get; set; }
-        public int PedidoId { get; set; }
-        public int ServicoId { get; set; }
+        public Pedido Pedido { get; set; }
+        public Servico Servico { get; set; }
         public int Quantidade { get; set; }
         public decimal Valor { get; set; }
 
         public ObterItemPedidoComIdDTO(ItemPedido itemPedido)
         {
             Id = itemPedido.Id;
-            PedidoId = itemPedido.PedidoId;
-            ServicoId = itemPedido.ServicoId;
+            Pedido = itemPedido.Pedido;
+            Servico = itemPedido.Servico;
             Quantidade = itemPedido.Quantidade;
             Valor = itemPedido.Valor;
         }

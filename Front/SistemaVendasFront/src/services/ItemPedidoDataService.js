@@ -10,7 +10,7 @@ class ItemPedidoDataService{
     }
 
     cadastrar(itemPedido){
-        return http.post('/itemPedido', itemPedido);
+        return http.post('/itemPedido/', itemPedido);
     }
 
     atualizar(id, itemPedido){

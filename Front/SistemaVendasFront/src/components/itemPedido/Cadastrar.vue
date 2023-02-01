@@ -94,7 +94,8 @@ export default {
                 .then(response => {
                     this.servicos = response.data;
                 });
-        }
+        },
+        
     },
     mounted(){
         this.obterPedidos();

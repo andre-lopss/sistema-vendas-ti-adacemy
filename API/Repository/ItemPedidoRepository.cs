@@ -36,6 +36,7 @@ namespace sistema_vendas_ti_adacemy.Repository
         public List<ObterItemPedidoComIdDTO> ObterPedido(int id)
         {
             var itensPedido = _context.ItensPedidos.Include(x => x.Servico)
+                                                  .Include(x => x.Pedido) 
                                                   .Where(x => x.PedidoId == id)
                                                   .Select(x => new ObterItemPedidoComIdDTO(x))
                                                   .ToList();
