@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sistema_vendas_ti_adacemy.Repository;
 using sistema_vendas_ti_adacemy.Dto;
@@ -28,13 +24,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(servico);
         }
 
-        [HttpGet("Listar")]
-        public IActionResult Listar()
-        {
-            var servicos = _repository.Listar();
-            return Ok(servicos);
-        }
-
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
@@ -53,6 +42,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(servicos);
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var servicos = _repository.Listar();
+            return Ok(servicos);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarServicoDTO dto)
         {
@@ -66,6 +62,20 @@ namespace sistema_vendas_ti_adacemy.Controllers
             }
             else
                 return NotFound(new { Mensagem = "Servico não encontrado" });
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult AtualizarNome(int id, AtualizarNomeServicoDTO dto)
+        {
+            var servico = _repository.ObterPorId(id);
+
+            if (servico is not null)
+            {
+                _repository.AtualizarNome(servico, dto);
+                return Ok(servico);
+            }
+            else
+                return NotFound(new { Mensagem = "Serviço não encontrado" });
         }
 
         [HttpDelete("{id}")]
