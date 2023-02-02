@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sistema_vendas_ti_adacemy.Repository;
 using sistema_vendas_ti_adacemy.Dto;
@@ -41,6 +37,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var pedidos = _repository.Listar();
+            return Ok(pedidos);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarPedidoDTO dto)
         {
@@ -51,20 +54,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 pedido.MapearAtualizarPedidoDTO(dto);
                 _repository.AtualizarPedido(pedido);
                 return Ok(pedido);
-            }
-            else
-                return NotFound(new { Mensagem = "Pedido não encontrado" });
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var pedido = _repository.ObterPorId(id);
-
-            if (pedido is not null)
-            {
-                _repository.DeletarPedido(pedido);
-                return NoContent();
             }
             else
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
@@ -98,12 +87,18 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
 
-        
-        [HttpGet("Listar")]
-        public IActionResult Listar()
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
         {
-            var pedidos = _repository.Listar();
-            return Ok(pedidos);
+            var pedido = _repository.ObterPorId(id);
+
+            if (pedido is not null)
+            {
+                _repository.DeletarPedido(pedido);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
     }
 }

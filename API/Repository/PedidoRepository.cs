@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using sistema_vendas_ti_adacemy.Context;
 using sistema_vendas_ti_adacemy.Dto;
@@ -33,17 +29,18 @@ namespace sistema_vendas_ti_adacemy.Repository
             return pedido;
         }
 
+        public List<Pedido> Listar()
+        {
+            return _context.Pedidos.Include(x => x.Vendedor)
+                                   .Include(x => x.Cliente)
+                                   .ToList();
+        }
+
         public Pedido AtualizarPedido(Pedido pedido)
         {
             _context.Pedidos.Update(pedido);
             _context.SaveChanges();
             return pedido;
-        }
-
-        public void DeletarPedido(Pedido pedido)
-        {
-            _context.Pedidos.Remove(pedido);
-            _context.SaveChanges();
         }
 
         public void AtualizarIdVendedor(Pedido pedido, AtualizarIdVendedorPedidoDTO dto)
@@ -58,11 +55,10 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarPedido(pedido);
         }
 
-        public List<Pedido> Listar()
+        public void DeletarPedido(Pedido pedido)
         {
-            return _context.Pedidos.Include(x => x.Vendedor)
-                                   .Include(x => x.Cliente)
-                                   .ToList();
+            _context.Pedidos.Remove(pedido);
+            _context.SaveChanges();
         }
     }
 }
