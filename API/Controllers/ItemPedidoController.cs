@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sistema_vendas_ti_adacemy.Repository;
 using sistema_vendas_ti_adacemy.Dto;
@@ -28,13 +24,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(itemPedido);
         }
 
-        [HttpGet("Listar")]
-        public IActionResult ObterTodos()
-        {
-            var itensPedidos = _repository.ObterTodos();
-            return Ok(itensPedidos);
-        }
-
         [HttpGet("{id}")]
         public IActionResult ObterPorId(int id)
         {
@@ -49,15 +38,22 @@ namespace sistema_vendas_ti_adacemy.Controllers
             }
         }
 
+        [HttpGet("Listar")]
+        public IActionResult ObterTodos()
+        {
+            var itensPedidos = _repository.ObterTodos();
+            return Ok(itensPedidos);
+        }
+
         [HttpGet("pedido/{id}")]
         public IActionResult ObterPorPedido(int id)
         {
             var ItensPedido = _repository.ObterPedido(id);
-            if(ItensPedido is not null)
+            if (ItensPedido is not null)
             {
                 return Ok(ItensPedido);
             }
-            return NotFound(new {mensagem = $"Não foi encontrado nenhum item de pedido do pedido de id {id}"});
+            return NotFound(new { mensagem = $"Não foi encontrado nenhum item de pedido do pedido de id {id}" });
         }
 
         [HttpPut("{id}")]
@@ -75,20 +71,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
             {
                 return NotFound(new { Mensagem = "Item do pedido nâo encontrado" });
             }
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var itemPedido = _repository.ObterPorId(id);
-
-            if (itemPedido is not null)
-            {
-                _repository.DeletarItemPedido(itemPedido);
-                return NoContent();
-            }
-            else
-                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
         [HttpPatch("PatchIdPedido/{id}")]
@@ -147,6 +129,18 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Item do pedido não encontrado" });
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            var itemPedido = _repository.ObterPorId(id);
 
+            if (itemPedido is not null)
+            {
+                _repository.DeletarItemPedido(itemPedido);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Item do pedido não encontrado" });
+        }
     }
 }

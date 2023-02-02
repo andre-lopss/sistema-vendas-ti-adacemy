@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using sistema_vendas_ti_adacemy.Context;
 using sistema_vendas_ti_adacemy.Dto;
@@ -28,19 +24,27 @@ namespace sistema_vendas_ti_adacemy.Repository
         public ItemPedido ObterPorId(int id)
         {
             var itemPedido = _context.ItensPedidos.Include(x => x.Pedido)
-                                                .Include(x => x.Servico)
-                                                .FirstOrDefault(x => x.Id == id);
+                                                  .Include(x => x.Servico)
+                                                  .FirstOrDefault(x => x.Id == id);
             return itemPedido;
+        }
+
+        public List<ObterItemPedidoComIdDTO> ObterTodos()
+        {
+            return _context.ItensPedidos.Include(x => x.Pedido)
+                                        .Include(x => x.Servico)
+                                        .Select(x => new ObterItemPedidoComIdDTO(x))
+                                        .ToList();
         }
 
         public List<ObterItemPedidoComIdDTO> ObterPedido(int id)
         {
             var itensPedido = _context.ItensPedidos.Include(x => x.Servico)
-                                                  .Include(x => x.Pedido) 
-                                                  .Where(x => x.PedidoId == id)
-                                                  .Select(x => new ObterItemPedidoComIdDTO(x))
-                                                  .ToList();
-            return itensPedido; 
+                                                   .Include(x => x.Pedido)
+                                                   .Where(x => x.PedidoId == id)
+                                                   .Select(x => new ObterItemPedidoComIdDTO(x))
+                                                   .ToList();
+            return itensPedido;
         }
 
         public ItemPedido AtualizarItemPedido(ItemPedido itemPedido)
@@ -48,13 +52,6 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.ItensPedidos.Update(itemPedido);
             _context.SaveChanges();
             return itemPedido;
-        }
-
-
-        public void DeletarItemPedido(ItemPedido itemPedido)
-        {
-            _context.ItensPedidos.Remove(itemPedido);
-            _context.SaveChanges();
         }
 
         public void AtualizarIdPedido(ItemPedido itemPedido, AtualizarIdPedidoItemPedidoDTO dto)
@@ -81,12 +78,10 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarItemPedido(itemPedido);
         }
 
-        public List<ObterItemPedidoComIdDTO> ObterTodos()
+        public void DeletarItemPedido(ItemPedido itemPedido)
         {
-            return _context.ItensPedidos.Include(x => x.Pedido)
-                                   .Include(x => x.Servico)
-                                   .Select(x => new ObterItemPedidoComIdDTO(x))
-                                   .ToList();
+            _context.ItensPedidos.Remove(itemPedido);
+            _context.SaveChanges();
         }
     }
 }
