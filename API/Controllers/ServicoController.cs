@@ -23,25 +23,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(servico);
             return Ok(servico);
         }
-
-        [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
-        {
-            var servico = _repository.ObterPorId(id);
-
-            if (servico is not null)
-                return Ok(servico);
-            else
-                return NotFound(new { Mensagem = "Servico não encontrado" });
-        }
-
-        [HttpGet("ObterPorNome/{nome}")]
-        public IActionResult ObterPorNome(string nome)
-        {
-            var servicos = _repository.ObterPorNome(nome);
-            return Ok(servicos);
-        }
-
+        
         [HttpGet("Listar")]
         public IActionResult Listar()
         {
@@ -49,10 +31,29 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(servicos);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult ConsultarPorId(int id)
+        {
+            var servico = _repository.ConsultarPorId(id);
+
+            if (servico is not null)
+                return Ok(servico);
+            else
+                return NotFound(new { Mensagem = "Servico não encontrado" });
+        }
+
+        [HttpGet("ConsultarPorNome/{nome}")]
+        public IActionResult ConsultarPorNome(string nome)
+        {
+            var servicos = _repository.ConsultarPorNome(nome);
+            return Ok(servicos);
+        }
+
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarServicoDTO dto)
         {
-            var servicos = _repository.ObterPorId(id);
+            var servicos = _repository.ConsultarPorId(id);
 
             if (servicos is not null)
             {
@@ -67,7 +68,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPatch("{id}")]
         public IActionResult AtualizarNome(int id, AtualizarNomeServicoDTO dto)
         {
-            var servico = _repository.ObterPorId(id);
+            var servico = _repository.ConsultarPorId(id);
 
             if (servico is not null)
             {
@@ -79,13 +80,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
+        public IActionResult Excluir(int id)
         {
-            var servico = _repository.ObterPorId(id);
+            var servico = _repository.ConsultarPorId(id);
 
             if (servico is not null)
             {
-                _repository.DeletarServico(servico);
+                _repository.ExcluirServico(servico);
                 return NoContent();
             }
             else

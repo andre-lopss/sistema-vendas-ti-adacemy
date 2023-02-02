@@ -24,10 +24,39 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(pedido);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        [HttpGet("Listar")]
+        public IActionResult Listar()
         {
-            var pedido = _repository.ObterPorId(id);
+            var pedidos = _repository.Listar();
+            return Ok(pedidos);
+        }
+
+        [HttpGet("vendedor/{id}")]
+        public IActionResult ListarPedidosVendedor(int id)
+        {
+            var pedidos = _repository.ListarPedidosVendedor(id);
+            if (pedidos is not null)
+            {
+                return Ok(pedidos);
+            }
+            return NotFound(new { mensagem = $"Não foi encontrado nenhum pedido do Vendedor {id}" });
+        }
+
+        [HttpGet("cliente/{id}")]
+        public IActionResult ListarPedidosCliente(int id)
+        {
+            var pedidos = _repository.ListarPedidosCliente(id);
+            if (pedidos is not null)
+            {
+                return Ok(pedidos);
+            }
+            return NotFound(new { mensagem = $"Não foi encontrado nenhum pedido do Cliente {id}" });
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult ConsultarPorId(int id)
+        {
+            var pedido = _repository.ConsultarPorId(id);
 
             if (pedido is not null)
             {
@@ -37,17 +66,10 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Pedido não encontrado" });
         }
 
-        [HttpGet("Listar")]
-        public IActionResult Listar()
-        {
-            var pedidos = _repository.Listar();
-            return Ok(pedidos);
-        }
-
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarPedidoDTO dto)
         {
-            var pedido = _repository.ObterPorId(id);
+            var pedido = _repository.ConsultarPorId(id);
 
             if (pedido is not null)
             {
@@ -62,7 +84,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPatch("PatchIdVendedor/{id}")]
         public IActionResult AtualizarIdVendedor(int id, AtualizarIdVendedorPedidoDTO dto)
         {
-            var pedido = _repository.ObterPorId(id);
+            var pedido = _repository.ConsultarPorId(id);
 
             if (pedido is not null)
             {
@@ -76,7 +98,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPatch("PatchIdCliente/{id}")]
         public IActionResult AtualizarIdCliente(int id, AtualizarIdClientePedidoDTO dto)
         {
-            var pedido = _repository.ObterPorId(id);
+            var pedido = _repository.ConsultarPorId(id);
 
             if (pedido is not null)
             {
@@ -88,13 +110,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
+        public IActionResult Excluir(int id)
         {
-            var pedido = _repository.ObterPorId(id);
+            var pedido = _repository.ConsultarPorId(id);
 
             if (pedido is not null)
             {
-                _repository.DeletarPedido(pedido);
+                _repository.ExcluirPedido(pedido);
                 return NoContent();
             }
             else

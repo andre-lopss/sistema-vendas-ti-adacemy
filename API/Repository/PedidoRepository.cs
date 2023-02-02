@@ -21,19 +21,39 @@ namespace sistema_vendas_ti_adacemy.Repository
             return pedido;
         }
 
-        public Pedido ObterPorId(int id)
-        {
-            var pedido = _context.Pedidos.Include(x => x.Vendedor)
-                                         .Include(x => x.Cliente)
-                                         .FirstOrDefault(x => x.Id == id);
-            return pedido;
-        }
-
         public List<Pedido> Listar()
         {
             return _context.Pedidos.Include(x => x.Vendedor)
                                    .Include(x => x.Cliente)
                                    .ToList();
+        }
+
+        public List<ObterPedidoComIdDTO> ListarPedidosVendedor(int id)
+        {
+            var pedidos = _context.Pedidos.Include(x => x.Vendedor)
+                                                .Include(x => x.Cliente)
+                                                .Where(x => x.VendedorId == id)
+                                                .Select(x => new ObterPedidoComIdDTO(x))
+                                                .ToList();
+            return pedidos;
+        }
+
+        public List<ObterPedidoComIdDTO> ListarPedidosCliente(int id)
+        {
+            var pedidos = _context.Pedidos.Include(x => x.Vendedor)
+                                                .Include(x => x.Cliente)
+                                                .Where(x => x.ClienteId == id)
+                                                .Select(x => new ObterPedidoComIdDTO(x))
+                                                .ToList();
+            return pedidos;
+        }
+
+        public Pedido ConsultarPorId(int id)
+        {
+            var pedido = _context.Pedidos.Include(x => x.Vendedor)
+                                         .Include(x => x.Cliente)
+                                         .FirstOrDefault(x => x.Id == id);
+            return pedido;
         }
 
         public Pedido AtualizarPedido(Pedido pedido)
@@ -55,7 +75,7 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarPedido(pedido);
         }
 
-        public void DeletarPedido(Pedido pedido)
+        public void ExcluirPedido(Pedido pedido)
         {
             _context.Pedidos.Remove(pedido);
             _context.SaveChanges();

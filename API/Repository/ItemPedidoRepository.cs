@@ -21,7 +21,15 @@ namespace sistema_vendas_ti_adacemy.Repository
             return itemPedido;
         }
 
-        public ItemPedido ObterPorId(int id)
+        public List<ObterItemPedidoComIdDTO> Listar()
+        {
+            return _context.ItensPedidos.Include(x => x.Pedido)
+                                        .Include(x => x.Servico)
+                                        .Select(x => new ObterItemPedidoComIdDTO(x))
+                                        .ToList();
+        }
+        
+        public ItemPedido ListarPorId(int id)
         {
             var itemPedido = _context.ItensPedidos.Include(x => x.Pedido)
                                                   .Include(x => x.Servico)
@@ -29,15 +37,7 @@ namespace sistema_vendas_ti_adacemy.Repository
             return itemPedido;
         }
 
-        public List<ObterItemPedidoComIdDTO> ObterTodos()
-        {
-            return _context.ItensPedidos.Include(x => x.Pedido)
-                                        .Include(x => x.Servico)
-                                        .Select(x => new ObterItemPedidoComIdDTO(x))
-                                        .ToList();
-        }
-
-        public List<ObterItemPedidoComIdDTO> ObterPedido(int id)
+        public List<ObterItemPedidoComIdDTO> ListarPorPedido(int id)
         {
             var itensPedido = _context.ItensPedidos.Include(x => x.Servico)
                                                    .Include(x => x.Pedido)
@@ -78,7 +78,7 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarItemPedido(itemPedido);
         }
 
-        public void DeletarItemPedido(ItemPedido itemPedido)
+        public void ExcluirItemPedido(ItemPedido itemPedido)
         {
             _context.ItensPedidos.Remove(itemPedido);
             _context.SaveChanges();

@@ -19,30 +19,25 @@ namespace sistema_vendas_ti_adacemy.Repository
 
             return login;
         }
-        
+
         public void Cadastrar(Vendedor vendedor)
         {
             _context.Vendedores.Add(vendedor);
             _context.SaveChanges();
         }
 
-        public Vendedor ObterPorId(int id)
+        public Vendedor ConsultarPorId(int id)
         {
             var vendedor = _context.Vendedores.Find(id);
             return vendedor;
         }
 
-        public List<ObterVendedorDTO> ObterPorNome(string nome)
+        public List<ObterVendedorDTO> ConsultarPorNome(string nome)
         {
             var vendedores = _context.Vendedores.Where(x => x.Nome.Contains(nome))
                                                 .Select(x => new ObterVendedorDTO(x))
                                                 .ToList();
             return vendedores;
-        }
-
-        public List<Vendedor> Listar()
-        {
-            return _context.Vendedores.ToList();
         }
 
         public Vendedor AtualizarVendedor(Vendedor vendedor)
@@ -58,10 +53,15 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarVendedor(vendedor);
         }
 
-        public void DeletarVendedor(Vendedor vendedor)
+        public void ExcluirVendedor(Vendedor vendedor)
         {
             _context.Vendedores.Remove(vendedor);
             _context.SaveChanges();
+        }
+
+        public List<Vendedor> Listar()
+        {
+            return _context.Vendedores.ToList();
         }
     }
 }

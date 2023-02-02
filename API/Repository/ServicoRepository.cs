@@ -19,23 +19,23 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.SaveChanges();
         }
 
-        public Servico ObterPorId(int id)
+        public List<Servico> Listar()
+        {
+            return _context.Servicos.ToList();
+        }
+
+        public Servico ConsultarPorId(int id)
         {
             var servico = _context.Servicos.Find(id);
             return servico;
         }
 
-        public List<ObterServicoDTO> ObterPorNome(string nome)
+        public List<ObterServicoDTO> ConsultarPorNome(string nome)
         {
             var servicos = _context.Servicos.Where(x => x.Nome.Contains(nome))
-                                                    .Select(x => new ObterServicoDTO(x))
-                                                    .ToList();
+                                            .Select(x => new ObterServicoDTO(x))
+                                            .ToList();
             return servicos;
-        }
-
-        public List<Servico> Listar()
-        {
-            return _context.Servicos.ToList();
         }
 
         public Servico AtualizarServico(Servico servico)
@@ -50,7 +50,8 @@ namespace sistema_vendas_ti_adacemy.Repository
             servico.Nome = dto.Nome;
             AtualizarServico(servico);
         }
-        public void DeletarServico(Servico servico)
+        
+        public void ExcluirServico(Servico servico)
         {
             _context.Servicos.Remove(servico);
             _context.SaveChanges();

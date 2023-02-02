@@ -27,6 +27,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return NotFound(new { Mensagem = "Login ou senha incorreto(s)" });
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var clientes = _repository.Listar();
+            return Ok(clientes);
+        }
+
         [HttpPost]
         public IActionResult Cadastrar(CadastrarClienteDTO dto)
         {
@@ -34,11 +41,11 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository.Cadastrar(cliente);
             return Ok(cliente);
         }
-
+        
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        public IActionResult ConsultarPorId(int id)
         {
-            var cliente = _repository.ObterPorId(id);
+            var cliente = _repository.ConsultarPorId(id);
 
             if (cliente is not null)
             {
@@ -48,25 +55,18 @@ namespace sistema_vendas_ti_adacemy.Controllers
             else
                 return NotFound(new { Mensagem = "Cliente não encontrado" });
         }
-
-        [HttpGet("ObterPorNome/{nome}")]
-        public IActionResult ObterPorNome(string nome)
+        
+        [HttpGet("ConsultarPorNome/{nome}")]
+        public IActionResult ConsultarPorNome(string nome)
         {
-            var cliente = _repository.ObterPorNome(nome);
+            var cliente = _repository.ConsultarPorNome(nome);
             return Ok(cliente);
-        }
-
-        [HttpGet("Listar")]
-        public IActionResult Listar()
-        {
-            var clientes = _repository.Listar();
-            return Ok(clientes);
         }
 
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarClienteDTO dto)
         {
-            var cliente = _repository.ObterPorId(id);
+            var cliente = _repository.ConsultarPorId(id);
 
             if (cliente is not null)
             {
@@ -81,7 +81,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPatch("{id}")]
         public IActionResult AtualizarSenha(int id, AtualizarSenhaClienteDTO dto)
         {
-            var cliente = _repository.ObterPorId(id);
+            var cliente = _repository.ConsultarPorId(id);
 
             if (cliente is not null)
             {
@@ -93,13 +93,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
+        public IActionResult Excluir(int id)
         {
-            var cliente = _repository.ObterPorId(id);
+            var cliente = _repository.ConsultarPorId(id);
 
             if (cliente is not null)
             {
-                _repository.DeletarCliente(cliente);
+                _repository.ExcluirCliente(cliente);
                 return NoContent();
             }
             else

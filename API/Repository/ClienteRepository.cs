@@ -25,17 +25,17 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.SaveChanges();
         }
 
-        public Cliente ObterPorId(int id)
+        public Cliente ConsultarPorId(int id)
         {
             var cliente = _context.Clientes.Find(id);
             return cliente;
         }
 
-        public List<ObterClienteDTO> ObterPorNome(string nome)
+        public List<ObterClienteDTO> ConsultarPorNome(string nome)
         {
             var clientes = _context.Clientes.Where(x => x.Nome.Contains(nome))
-                                                    .Select(x => new ObterClienteDTO(x))
-                                                    .ToList();
+                                            .Select(x => new ObterClienteDTO(x))
+                                            .ToList();
             return clientes;
         }
 
@@ -57,7 +57,7 @@ namespace sistema_vendas_ti_adacemy.Repository
             AtualizarCliente(cliente);
         }
 
-        public void DeletarCliente(Cliente cliente)
+        public void ExcluirCliente(Cliente cliente)
         {
             _context.Clientes.Remove(cliente);
             _context.SaveChanges();

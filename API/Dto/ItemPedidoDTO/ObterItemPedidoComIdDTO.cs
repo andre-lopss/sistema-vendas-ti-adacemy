@@ -4,7 +4,6 @@ namespace sistema_vendas_ti_adacemy.Dto
 {
     public class ObterItemPedidoComIdDTO
     {
-
         public int Id { get; set; }
         public Pedido Pedido { get; set; }
         public Servico Servico { get; set; }
