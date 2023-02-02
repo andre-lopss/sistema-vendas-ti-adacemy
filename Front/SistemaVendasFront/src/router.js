@@ -72,6 +72,15 @@ const routes = [
         component: () => import("./components/Pedido/Resumo.vue")
     },
     {
+        path: "/pedido/:pedidoId/itemPedido/listar",
+        component: () => import('./components/itemPedido/listar.vue')
+     },
+    {
+        path: "/pedido/:pedidoId/itemPedido/cadastrar",
+        component: () => import('./components/itemPedido/cadastrar.vue')
+    },
+
+    {
         path: "/itemPedido/listar",
         component: () => import("./components/ItemPedido/Listar.vue")
     },
@@ -86,21 +95,6 @@ const routes = [
     {
         path: "/ItemPedido/:id",
         component: () => import("./components/ItemPedido/Atualizar.vue")
-    },
-    {
-        path: "/ItemPedido/resumo/:id",
-        component: () => import("./components/ItemPedido/Resumo.vue")
-    },
-
-    {
-        path: "/pedido/:pedidoId/itemPedido/listar",
-        component: () => import('./components/itemPedido/listar.vue')
-    },
-    ,
-
-    {
-        path: "/pedido/:pedidoId/itemPedido/cadastrar",
-        component: () => import('./components/itemPedido/cadastrar.vue')
     },
 ];
 const router = createRouter({

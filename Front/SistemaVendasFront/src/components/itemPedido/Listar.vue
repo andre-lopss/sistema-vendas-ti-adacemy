@@ -1,8 +1,8 @@
 <template>
   <h3 class="text-center" style="margin-top: 10px;">ITENS DO PEDIDO {{ pedido.id }}</h3>
 
-  <hr/>
-  
+  <hr />
+
   <div class="container col-5">
 
     <p v-if="ItensPedido.length === 0" class="text-center">
@@ -65,6 +65,9 @@ export default {
     },
     obterPedidos() {
       PedidoDataService.obterPorId(this.$route.params.pedidoId).then(response => this.pedido = response.data)
+    },
+    resumoPedido(id) {
+      this.$router.push('/ItemPedido/resumo/' + id);
     },
     async excluirItemPedido(itemPedido) {
       if (confirm(`Tem certeza que deseja excluir o item do pedido N°: ${itemPedido.id}?`)) {

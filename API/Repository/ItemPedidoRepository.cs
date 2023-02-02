@@ -28,11 +28,13 @@ namespace sistema_vendas_ti_adacemy.Repository
                                         .Select(x => new ObterItemPedidoComIdDTO(x))
                                         .ToList();
         }
-        
+
         public ItemPedido ListarPorId(int id)
         {
             var itemPedido = _context.ItensPedidos.Include(x => x.Pedido)
-                                                  .Include(x => x.Servico)
+                                                  .Include(x => x.Pedido.Cliente)
+                                                  .Include(x => x.Pedido.Vendedor)
+                                                  .Include(x => x.Servico)                                         
                                                   .FirstOrDefault(x => x.Id == id);
             return itemPedido;
         }

@@ -6,7 +6,7 @@
 
     <hr />
     
-    <div class="container col-6">
+    <div class="container col-10">
         <router-link class="btn btn-success" to="/pedido/cadastrar" style="margin-bottom: 10px;">Cadastrar
             Pedido</router-link>
 
