@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using sistema_vendas_ti_adacemy.Context;
 using sistema_vendas_ti_adacemy.Dto;
 using sistema_vendas_ti_adacemy.Models;
@@ -32,9 +28,14 @@ namespace sistema_vendas_ti_adacemy.Repository
         public List<ObterVendedorDTO> ObterPorNome(string nome)
         {
             var vendedores = _context.Vendedores.Where(x => x.Nome.Contains(nome))
-                                                    .Select(x => new ObterVendedorDTO(x))
-                                                    .ToList();
+                                                .Select(x => new ObterVendedorDTO(x))
+                                                .ToList();
             return vendedores;
+        }
+
+        public List<Vendedor> Listar()
+        {
+            return _context.Vendedores.ToList();
         }
 
         public Vendedor AtualizarVendedor(Vendedor vendedor)
@@ -44,21 +45,16 @@ namespace sistema_vendas_ti_adacemy.Repository
             return vendedor;
         }
 
-        public void DeletarVendedor(Vendedor vendedor)
-        {
-            _context.Vendedores.Remove(vendedor);
-            _context.SaveChanges();
-        }
-
         public void AtualizarSenha(Vendedor vendedor, AtualizarSenhaVendedorDTO dto)
         {
             vendedor.Senha = dto.Senha;
             AtualizarVendedor(vendedor);
         }
 
-        public List<Vendedor> Listar()
+        public void DeletarVendedor(Vendedor vendedor)
         {
-            return _context.Vendedores.ToList();
+            _context.Vendedores.Remove(vendedor);
+            _context.SaveChanges();
         }
     }
 }

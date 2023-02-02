@@ -45,6 +45,13 @@ namespace sistema_vendas_ti_adacemy.Controllers
             return Ok(vendedores);
         }
 
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var vendedores = _repository.Listar();
+            return Ok(vendedores);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarVendedorDTO dto)
         {
@@ -55,20 +62,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 vendedor.MapearAtualizarVendedorDTO(dto);
                 _repository.AtualizarVendedor(vendedor);
                 return Ok(vendedor);
-            }
-            else
-                return NotFound(new { Mensagem = "Vendedor não encontrado" });
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var vendedor = _repository.ObterPorId(id);
-
-            if (vendedor is not null)
-            {
-                _repository.DeletarVendedor(vendedor);
-                return NoContent();
             }
             else
                 return NotFound(new { Mensagem = "Vendedor não encontrado" });
@@ -88,11 +81,18 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Vendedor não encontrado" });
         }
 
-        [HttpGet("Listar")]
-        public IActionResult Listar()
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
         {
-            var vendedores = _repository.Listar();
-            return Ok(vendedores);
+            var vendedor = _repository.ObterPorId(id);
+
+            if (vendedor is not null)
+            {
+                _repository.DeletarVendedor(vendedor);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Vendedor não encontrado" });
         }
     }
 }
