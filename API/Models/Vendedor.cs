@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using sistema_vendas_ti_adacemy.Dto;
 
 namespace sistema_vendas_ti_adacemy.Models
@@ -20,6 +16,11 @@ namespace sistema_vendas_ti_adacemy.Models
         public Vendedor(CadastrarVendedorDTO dto)
         {
             Nome = dto.Nome;
+            Login = dto.Login;
+            Senha = dto.Senha;
+        }
+
+        public Vendedor(LoginVendedorDTO dto){
             Login = dto.Login;
             Senha = dto.Senha;
         }
