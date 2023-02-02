@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using sistema_vendas_ti_adacemy.Context;
 using sistema_vendas_ti_adacemy.Dto;
 using sistema_vendas_ti_adacemy.Models;
@@ -37,6 +33,11 @@ namespace sistema_vendas_ti_adacemy.Repository
             return clientes;
         }
 
+        public List<Cliente> Listar()
+        {
+            return _context.Clientes.ToList();
+        }
+
         public Cliente AtualizarCliente(Cliente cliente)
         {
             _context.Clientes.Update(cliente);
@@ -44,20 +45,16 @@ namespace sistema_vendas_ti_adacemy.Repository
             return cliente;
         }
 
-        public void DeletarCliente(Cliente cliente)
-        {
-            _context.Clientes.Remove(cliente);
-            _context.SaveChanges();
-        }
-
         public void AtualizarSenha(Cliente cliente, AtualizarSenhaClienteDTO dto)
         {
             cliente.Senha = dto.Senha;
             AtualizarCliente(cliente);
         }
-        public List<Cliente> Listar()
+
+        public void DeletarCliente(Cliente cliente)
         {
-            return _context.Clientes.ToList();
+            _context.Clientes.Remove(cliente);
+            _context.SaveChanges();
         }
     }
 }

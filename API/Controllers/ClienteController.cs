@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using sistema_vendas_ti_adacemy.Repository;
 using sistema_vendas_ti_adacemy.Dto;
@@ -23,7 +19,7 @@ namespace sistema_vendas_ti_adacemy.Controllers
         [HttpPost]
         public IActionResult Cadastrar(CadastrarClienteDTO dto)
         {
-            var cliente= new Cliente(dto);
+            var cliente = new Cliente(dto);
             _repository.Cadastrar(cliente);
             return Ok(cliente);
         }
@@ -48,6 +44,14 @@ namespace sistema_vendas_ti_adacemy.Controllers
             var cliente = _repository.ObterPorNome(nome);
             return Ok(cliente);
         }
+
+        [HttpGet("Listar")]
+        public IActionResult Listar()
+        {
+            var clientes = _repository.Listar();
+            return Ok(clientes);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, AtualizarClienteDTO dto)
         {
@@ -58,20 +62,6 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 cliente.MapearAtualizarClienteDTO(dto);
                 _repository.AtualizarCliente(cliente);
                 return Ok(cliente);
-            }
-            else
-                return NotFound(new { Mensagem = "Cliente não encontrado" });
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Deletar(int id)
-        {
-            var cliente = _repository.ObterPorId(id);
-
-            if (cliente is not null)
-            {
-                _repository.DeletarCliente(cliente);
-                return NoContent();
             }
             else
                 return NotFound(new { Mensagem = "Cliente não encontrado" });
@@ -91,11 +81,18 @@ namespace sistema_vendas_ti_adacemy.Controllers
                 return NotFound(new { Mensagem = "Vendedor não encontrado" });
         }
 
-        [HttpGet("Listar")]
-        public IActionResult Listar()
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
         {
-            var clientes = _repository.Listar();
-            return Ok(clientes);
+            var cliente = _repository.ObterPorId(id);
+
+            if (cliente is not null)
+            {
+                _repository.DeletarCliente(cliente);
+                return NoContent();
+            }
+            else
+                return NotFound(new { Mensagem = "Cliente não encontrado" });
         }
     }
 }
