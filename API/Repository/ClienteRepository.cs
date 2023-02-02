@@ -13,6 +13,12 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context = context;
         }
 
+        public Cliente Login(Cliente cliente)
+        {
+            var login = _context.Clientes.SingleOrDefault(x => x.Login == cliente.Login && x.Senha == cliente.Senha);
+
+            return login;
+        }
         public void Cadastrar(Cliente cliente)
         {
             _context.Clientes.Add(cliente);

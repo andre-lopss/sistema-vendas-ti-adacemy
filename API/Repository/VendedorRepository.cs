@@ -16,9 +16,10 @@ namespace sistema_vendas_ti_adacemy.Repository
         public Vendedor Login(Vendedor vendedor)
         {
             var login = _context.Vendedores.SingleOrDefault(x => x.Login == vendedor.Login && x.Senha == vendedor.Senha);
-            
+
             return login;
         }
+        
         public void Cadastrar(Vendedor vendedor)
         {
             _context.Vendedores.Add(vendedor);
@@ -62,7 +63,5 @@ namespace sistema_vendas_ti_adacemy.Repository
             _context.Vendedores.Remove(vendedor);
             _context.SaveChanges();
         }
-
-
     }
 }

@@ -13,6 +13,12 @@ namespace sistema_vendas_ti_adacemy.Models
         {
         }
 
+        public Cliente(LoginClienteDTO dto)
+        {
+            Login = dto.Login;
+            Senha = dto.Senha;
+        }
+
         public Cliente(CadastrarClienteDTO dto)
         {
             Nome = dto.Nome;

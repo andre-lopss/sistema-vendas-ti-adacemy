@@ -16,6 +16,17 @@ namespace sistema_vendas_ti_adacemy.Controllers
             _repository = repository;
         }
 
+        [HttpPost("Login")]
+        public IActionResult Login(LoginClienteDTO dto)
+        {
+            var cliente = _repository.Login(new Cliente(dto));
+
+            if(cliente is not null)
+                return Ok(true);
+            else
+            return NotFound(new { Mensagem = "Login ou senha incorreto(s)" });
+        }
+
         [HttpPost]
         public IActionResult Cadastrar(CadastrarClienteDTO dto)
         {
