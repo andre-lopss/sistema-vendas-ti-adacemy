@@ -22,4 +22,8 @@ export default{
 .fonteColor{
   color: white;
 }
+
+.heightButton{
+  height: 100%;
+}
 </style>

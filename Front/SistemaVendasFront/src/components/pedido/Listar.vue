@@ -24,7 +24,7 @@
             <tbody>
                 <tr v-for="(pedido, index) in pedidos" :key="index">
                     <td>{{ pedido.id }}</td>
-                    <td>{{ pedido.data }}</td>
+                    <td>{{ obterData(pedido.data) }}</td>
                     <td>{{ pedido.vendedor.nome }}</td>
                     <td>{{ pedido.cliente.nome }}</td>
                     <td class="d-flex justify-content-between">
@@ -90,6 +90,10 @@ export default {
         },
         cadastrarItemPedido(id) {
             this.$router.push('/pedido/' + id + '/itemPedido/cadastrar')
+        },
+        obterData(data) {
+            let dataPedido = new Date(data);
+            return dataPedido.toLocaleString();
         }
     },
     mounted() {

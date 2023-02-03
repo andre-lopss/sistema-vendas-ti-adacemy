@@ -7,7 +7,7 @@
         <div class="container col-8">
             <div>
                 <label class="form-label">Data</label>
-                <input type="datetime-local" v-model="pedido.data" class="form-control">
+                <input type="text" disabled :value="obterData(dataForm)" class="form-control">
             </div>
 
             <div>
@@ -31,15 +31,16 @@ import PedidoDataService from '../../services/PedidoDataService';
 export default {
     data() {
         return {
+            dataForm: new Date(),
             pedido: {
-                data: '',
+                data: new Date().toISOString(),
                 vendedorId: '',
                 clienteId: ''
             }
         }
     },
     methods: {
-        cadastrarPedido() {
+        cadastrarPedido() {         
             var data = {
                 data: this.pedido.data,
                 vendedorId: this.pedido.vendedorId,
@@ -48,6 +49,10 @@ export default {
             PedidoDataService.cadastrar(data).then(() => {
                 this.$router.push('listar');
             });
+        },
+        obterData(date) {
+            let dataLocal = date;
+            return dataLocal.toLocaleString();
         }
     }
 }
