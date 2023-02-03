@@ -11,7 +11,7 @@
 
         <div class="form-group">
             <label for="descricaoServico">Descrição do serviço:</label>
-            <textarea class="form-control" v-model="servico.descricao" rows="5"></textarea>
+            <textarea class="form-control" v-model="servico.descricao" rows="5" placeholder="Descrição do serviço"></textarea>
         </div>
         <button class="btn btn-success" @click="cadastrarServico" style="margin-top: 4%">Cadastrar</button>
     </div>

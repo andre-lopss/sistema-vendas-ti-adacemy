@@ -28,9 +28,11 @@
           <td class="text-center">{{ itemPedido.quantidade }}</td>
           <td>{{ itemPedido.valor }}</td>
           <td>{{ itemPedido.valor * itemPedido.quantidade }}</td>
-          <td class="d-flex justify-content-between">
+          <td>
+            <div class="btn-group btn-group-toggle container" data-toggle="buttons">
             <button class="btn btn-success" @click="editarItemPedido(itemPedido.id)">Editar</button>
             <button class="btn btn-danger" @click="excluirItemPedido(itemPedido)">Excluir</button>
+              </div>
           </td>
         </tr>
       </tbody>

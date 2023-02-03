@@ -22,9 +22,11 @@
                     <td>{{ servico.id }}</td>
                     <td>{{ servico.nome }}</td>
                     <td>{{ servico.descricao }}</td>
-                    <td class="d-flex justify-content-between">
-                        <button class="btn btn-success" @click="editarServico(servico.id)">Editar</button>
-                        <button class="btn btn-danger" @click="excluirServico(servico)">Excluir</button>
+                    <td>
+                        <div class="btn-group btn-group-toggle container" data-toggle="buttons">
+                            <button class="btn btn-success" @click="editarServico(servico.id)">Editar</button>
+                            <button class="btn btn-danger" @click="excluirServico(servico)">Excluir</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>

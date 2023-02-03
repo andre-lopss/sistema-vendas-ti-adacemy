@@ -32,13 +32,17 @@
                 <hr />
                 <div class="row">
                     <div class="col-10 container">
-                        <h3  class="text-center">Itens</h3>
-                        <table class="table table-striped">
+                        <h3 class="text-center">Itens</h3>
+
+                        <p v-if="ItensPedido.length === 0" class="text-center">
+                            Esse pedido não possui nenhum item
+                        </p>
+                        <table class="table table-striped" v-else>
                             <thead class="bg-primary thead-dark fonteColor">
                                 <tr>
                                     <th scope="col" class="text-center">#</th>
                                     <th scope="col">Serviço</th>
-                                    <th scope="col"  class="text-center">Quantidade</th>
+                                    <th scope="col" class="text-center">Quantidade</th>
                                     <th scope="col">Valor unitário</th>
                                     <th scope="col">Sub-Total</th>
                                 </tr>
@@ -47,9 +51,17 @@
                                 <tr>
                                     <th scope="row">{{ item.id }}</th>
                                     <td>{{ item.servico.nome }}</td>
-                                    <td  class="text-center">{{ item.quantidade }}</td>
-                                    <td scope="row">{{ item.valor.toLocaleString("pt-br", {style:'currency', currency: 'BRL'}) }}</td>
-                                    <td>R${{ (item.valor * item.quantidade).toLocaleString("pt-br", {style:'currency', currency: 'BRL'}) }}</td>
+                                    <td class="text-center">{{ item.quantidade }}</td>
+                                    <td scope="row">{{
+                                        item.valor.toLocaleString("pt-br", {
+                                            style: 'currency', currency:
+                                                'BRL'
+                                        })
+                                    }}</td>
+                                    <td>R${{ (item.valor * item.quantidade).toLocaleString("pt-br", {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                    }) }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -60,11 +72,11 @@
             <div class="row">
                 <div class="col-8">
                     <h3>Quantidade de Itens</h3>
-                    <div class="pull-right">{{ItensPedido.length }}</div>
+                    <div class="pull-right">{{ ItensPedido.length }}</div>
                 </div>
                 <div class="col-4">
                     <h3>Total</h3>
-                    <div class="pull-right">{{valorTotal() }}</div>
+                    <div class="pull-right">{{ valorTotal() }}</div>
                 </div>
             </div>
         </div>
@@ -90,12 +102,12 @@ export default {
                     this.pedido = response.data;
                 });
         },
-        valorTotal(){
+        valorTotal() {
             let total = 0;
             this.ItensPedido.forEach(item => {
                 total += (item.quantidade * item.valor);
             });
-            return total.toLocaleString("pt-br", {style:'currency', currency: 'BRL'});
+            return total.toLocaleString("pt-br", { style: 'currency', currency: 'BRL' });
         },
         obterItensPedido(id) {
             ItemPedidoDataService.listarPorPedido(id).then(response => this.ItensPedido = response.data)

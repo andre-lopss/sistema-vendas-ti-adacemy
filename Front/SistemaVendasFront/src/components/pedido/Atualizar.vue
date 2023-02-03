@@ -13,7 +13,7 @@
 
             <div>
                 <label class="form-label">Data</label>
-                <input type="datetime" disabled v-model="pedido.data" class="form-control">
+                <input type="datetime" disabled :value="obterData(pedido.data)" class="form-control">
             </div>
 
             <div>
@@ -50,6 +50,10 @@ export default {
             PedidoDataService.atualizar(this.pedido.id, this.pedido).then(() => {
                 this.$router.push('listar');
             });
+        },
+        obterData(data) {
+            let dataPedido = new Date(data);
+            return dataPedido.toLocaleString();
         }
     },
     mounted() {
