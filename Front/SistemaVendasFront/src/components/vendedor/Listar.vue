@@ -5,12 +5,12 @@
 
     <div class="container col-5">
 
-        <router-link class="btn btn-success" to="/vendedor/cadastrar" style="margin-bottom: 10px;">Cadastrar
-            vendedor</router-link>
+        <router-link class="btn btn-success" to="/vendedor/cadastrar" style="margin-bottom: 10px;">Adicionar
+            Vendedor</router-link>
 
         <table class="table table-striped">
 
-            <thead class="bg-primary rounded fonteColor">
+            <thead class="bg-dark rounded fonteColor">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
@@ -26,7 +26,7 @@
                     <td>{{ vendedor.login }}</td>
                     <td>
                         <div class="btn-group btn-group-toggle container" data-toggle="buttons">
-                            <button class="btn btn-primary" @click="editarVendedor(vendedor.id)">Editar</button>
+                            <button class="btn btn-secondary" @click="editarVendedor(vendedor.id)">Editar</button>
                             <button class="btn btn-danger" @click="excluirVendedor(vendedor)">Excluir</button>
                         </div>
                     </td>

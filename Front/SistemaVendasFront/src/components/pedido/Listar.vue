@@ -6,12 +6,12 @@
 
     <hr />
 
-    <div class="container col-10">
+    <div class="container col-7">
         <router-link class="btn btn-success" to="/pedido/cadastrar" style="margin-bottom: 10px;">Cadastrar
             Pedido</router-link>
 
         <table class="table table-striped">
-            <thead class="bg-primary thead-dark fonteColor">
+            <thead class="bg-dark thead-dark fonteColor">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Data</th>
@@ -30,7 +30,7 @@
                     <td>
                         <div class="btn-group btn-group-toggle container" data-toggle="buttons">
 
-                            <button class="btn btn-primary" @click="editarPedido(pedido.id)">Editar</button>
+                            <button class="btn btn-dark" @click="editarPedido(pedido.id)">Editar</button>
 
                             <button style="font-size: 1rem; border-radius: 0px;"
                                 class="btn btn-success dropdown-toggle " type="button" data-bs-toggle="dropdown"

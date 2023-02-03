@@ -38,7 +38,7 @@
                             Esse pedido não possui nenhum item
                         </p>
                         <table class="table table-striped" v-else>
-                            <thead class="bg-primary thead-dark fonteColor">
+                            <thead class="bg-dark thead-dark fonteColor">
                                 <tr>
                                     <th scope="col" class="text-center">#</th>
                                     <th scope="col">Serviço</th>

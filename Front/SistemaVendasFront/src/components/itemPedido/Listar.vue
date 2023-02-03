@@ -10,7 +10,7 @@
     </p>
 
     <table class="table table-striped" v-else>
-      <thead class="bg-primary thead-dark fonteColor">
+      <thead class="bg-dark thead-dark fonteColor">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Serviço</th>
@@ -30,7 +30,7 @@
           <td>{{ itemPedido.valor * itemPedido.quantidade }}</td>
           <td>
             <div class="btn-group btn-group-toggle container" data-toggle="buttons">
-            <button class="btn btn-success" @click="editarItemPedido(itemPedido.id)">Editar</button>
+            <button class="btn btn-secondary" @click="editarItemPedido(itemPedido.id)">Editar</button>
             <button class="btn btn-danger" @click="excluirItemPedido(itemPedido)">Excluir</button>
               </div>
           </td>

@@ -3,11 +3,12 @@
 
     <hr />
 
-    <div class="container col-4"> 
-        <router-link class="btn btn-success" to="/cliente/cadastrar" style="margin-bottom: 10px;">Cadastrar cliente</router-link>
-        
+    <div class="container col-4">
+        <router-link class="btn btn-success" to="/cliente/cadastrar" style="margin-bottom: 10px;">Adicionar
+            Cliente</router-link>
+
         <table class="table table-striped">
-            <thead class="bg-primary thead-dark fonteColor">
+            <thead class="bg-dark thead-dark fonteColor">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
@@ -17,12 +18,14 @@
             </thead>
             <tbody>
                 <tr v-for="(cliente, index) in clientes" :key="index">
-                    <td>{{ cliente.id }}</td>
+                    <th>{{ cliente.id }}</th>
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.login }}</td>
-                    <td class="d-flex justify-content-between">
-                        <button class="btn btn-success" @click="editarCliente(cliente.id)">Editar</button>
-                        <button class="btn btn-danger" @click="excluirCliente(cliente)">Excluir</button>
+                    <td>
+                        <div class="btn-group btn-group-toggle container" data-toggle="buttons">
+                            <button class="btn btn-secondary" @click="editarCliente(cliente.id)">Editar</button>
+                            <button class="btn btn-danger" @click="excluirCliente(cliente)">Excluir</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -40,24 +43,23 @@ export default {
         }
     },
     methods: {
-        obterClientes() 
-        {
+        obterClientes() {
             ClienteDataService.listar()
                 .then(response => {
                     this.clientes = response.data;
                 });
-        }, 
-        editarCliente(id){
+        },
+        editarCliente(id) {
             this.$router.push('/cliente/' + id);
         },
-        async excluirCliente(cliente){
-            if(confirm(`Tem certeza que deseja excluir o cliente ${cliente.nome}?`)){
+        async excluirCliente(cliente) {
+            if (confirm(`Tem certeza que deseja excluir o cliente ${cliente.nome}?`)) {
                 await ClienteDataService.deletar(cliente.id);
                 this.obterClientes();
             }
         }
     },
-    mounted(){
+    mounted() {
         this.obterClientes();
     }
 }

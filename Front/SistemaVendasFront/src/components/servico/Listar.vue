@@ -4,11 +4,11 @@
     <hr />
 
     <div class="container col-6">
-        <router-link class="btn btn-success" to="/servico/cadastrar" style="margin-bottom: 10px;">Cadastrar
+        <router-link class="btn btn-success" to="/servico/cadastrar" style="margin-bottom: 10px;">Adicionar
             Serviço</router-link>
 
         <table class="table table-striped">
-            <thead class="bg-primary thead-dark fonteColor">
+            <thead class="bg-dark thead-dark fonteColor">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
@@ -19,12 +19,12 @@
 
             <tbody>
                 <tr v-for="(servico, index) in servicos" :key="index">
-                    <td>{{ servico.id }}</td>
+                    <th>{{ servico.id }}</th>
                     <td>{{ servico.nome }}</td>
                     <td>{{ servico.descricao }}</td>
                     <td>
                         <div class="btn-group btn-group-toggle container" data-toggle="buttons">
-                            <button class="btn btn-success" @click="editarServico(servico.id)">Editar</button>
+                            <button class="btn btn-secondary" @click="editarServico(servico.id)">Editar</button>
                             <button class="btn btn-danger" @click="excluirServico(servico)">Excluir</button>
                         </div>
                     </td>
