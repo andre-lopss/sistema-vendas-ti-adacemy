@@ -58,7 +58,7 @@
                                                 'BRL'
                                         })
                                     }}</td>
-                                    <td>R${{ (item.valor * item.quantidade).toLocaleString("pt-br", {
+                                    <td>{{ (item.valor * item.quantidade).toLocaleString("pt-br", {
                                         style: 'currency',
                                         currency: 'BRL'
                                     }) }}</td>
@@ -81,6 +81,10 @@
             </div>
         </div>
     </div>
+    <div class="container col-6" style="margin-top: 10px; padding: 0px;" >
+        <router-link class="btn btn-primary" to="/pedido/listar" style="margin-right: 10px;">Voltar</router-link>
+    </div>
+    
 </template>
 
 <script>
