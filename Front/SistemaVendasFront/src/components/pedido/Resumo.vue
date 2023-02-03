@@ -1,7 +1,6 @@
 <template>
-
     <h3 class="container col-10 text-center">RESUMO DO PEDIDO</h3>
-    <div class="panel panel-default container col-10" style="border: 1px solid grey ;">
+    <div class="panel panel-default container col-6" style="border: 1px solid grey ;">
         <div class="panel-body">
             <div class="row">
                 <div class="col-12">
@@ -13,6 +12,9 @@
                 <div class="col-12">
                     <h3>Seus Dados</h3>
                     <div class="row">
+                        <div class="col-12">
+                            <p>Data: {{ obterData(pedido.data) }}</p>
+                        </div>
                         <div class="col-6">
                             <p><strong>VENDEDOR - {{ pedido.vendedorId }}</strong></p>
                             <p>Nome: {{ pedido.vendedor.nome }}</p>
@@ -25,6 +27,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
                 <hr />
                 <div class="row">
                     <div class="col-10 container">
@@ -44,16 +48,13 @@
                                     <th scope="row">{{ item.id }}</th>
                                     <td>{{ item.servico.nome }}</td>
                                     <td  class="text-center">{{ item.quantidade }}</td>
-                                    <td scope="row">R${{ item.valor }}</td>
-                                    <td>R${{ item.valor * item.quantidade }}</td>
+                                    <td scope="row">{{ item.valor.toLocaleString("pt-br", {style:'currency', currency: 'BRL'}) }}</td>
+                                    <td>R${{ (item.valor * item.quantidade).toLocaleString("pt-br", {style:'currency', currency: 'BRL'}) }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-                <!-- -------------------- ate aqui ok -->
-
             </div>
             <hr />
             <div class="row">
@@ -102,7 +103,10 @@ export default {
         buscarItensPedido(id) {
             this.$router.push('/pedido/resumo/' + id + '/itemPedido/listar')
         },
-
+        obterData(data) {
+            let dataPedido = new Date(data);
+            return dataPedido.toLocaleString();
+        }
     },
     beforeMount() {
         this.obterPedido(this.$route.params.id);

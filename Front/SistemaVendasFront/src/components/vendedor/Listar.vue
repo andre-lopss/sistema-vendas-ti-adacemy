@@ -1,9 +1,9 @@
 <template>
     <h3 class="text-center" style="margin-top: 10px;">LISTAGEM DE VENDEDORES</h3>
-    
+
     <hr />
 
-    <div class="container col-5"> 
+    <div class="container col-5">
 
         <router-link class="btn btn-success" to="/vendedor/cadastrar" style="margin-bottom: 10px;">Cadastrar
             vendedor</router-link>
@@ -21,12 +21,14 @@
 
             <tbody>
                 <tr v-for="(vendedor, index) in vendedores" :key="index">
-                    <td>{{ vendedor.id }}</td>
+                    <th scope="row">{{ vendedor.id }}</th>
                     <td>{{ vendedor.nome }}</td>
                     <td>{{ vendedor.login }}</td>
-                    <td class="d-flex justify-content-between">
-                        <button class="btn btn-primary" @click="editarVendedor(vendedor.id)">Editar</button>
-                        <button class="btn btn-danger" @click="excluirVendedor(vendedor)">Excluir</button>
+                    <td>
+                        <div class="btn-group btn-group-toggle container" data-toggle="buttons">
+                            <button class="btn btn-primary" @click="editarVendedor(vendedor.id)">Editar</button>
+                            <button class="btn btn-danger" @click="excluirVendedor(vendedor)">Excluir</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>

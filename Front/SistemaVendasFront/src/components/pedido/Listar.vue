@@ -5,7 +5,7 @@
     <h3 class="text-center" style="margin-top: 10px;">LISTAGEM DE PEDIDOS</h3>
 
     <hr />
-    
+
     <div class="container col-10">
         <router-link class="btn btn-success" to="/pedido/cadastrar" style="margin-bottom: 10px;">Cadastrar
             Pedido</router-link>
@@ -23,33 +23,40 @@
 
             <tbody>
                 <tr v-for="(pedido, index) in pedidos" :key="index">
-                    <td>{{ pedido.id }}</td>
+                    <th>{{ pedido.id }}</th>
                     <td>{{ obterData(pedido.data) }}</td>
                     <td>{{ pedido.vendedor.nome }}</td>
                     <td>{{ pedido.cliente.nome }}</td>
-                    <td class="d-flex justify-content-between">
+                    <td>
+                        <div class="btn-group btn-group-toggle container" data-toggle="buttons">
 
-                        <button class="btn btn-primary" @click="editarPedido(pedido.id)">Editar</button>
+                            <button class="btn btn-primary" @click="editarPedido(pedido.id)">Editar</button>
 
-                        <div class="dropdown">
-                            <button style="font-size: 1rem; height: 100%;"
-                                class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <button style="font-size: 1rem; border-radius: 0px;"
+                                class="btn btn-success dropdown-toggle " type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Itens Pedido
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" @click="buscarItensPedido(pedido.id)">Listar</a></li>
-                                <li><a class="dropdown-item" @click="cadastrarItemPedido(pedido.id)">Cadastrar</a></li>
+                                <li><a class="dropdown-item" @click="cadastrarItemPedido(pedido.id)">Cadastrar</a>
+                                </li>
                             </ul>
+
+                            <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
+
+                            <button type="button"
+                                class="btn btn-secondary d-flex justify-content-center align-items-center"
+                                @click="resumoPedido(pedido.id)">
+                                <svg style="padding-right: 5px;" xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-file-earmark-font-fill"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.057 6h5.886L11 8h-.5c-.18-1.096-.356-1.192-1.694-1.235l-.298-.01v5.09c0 .47.1.582.903.655v.5H6.59v-.5c.799-.073.898-.184.898-.654V6.755l-.293.01C5.856 6.808 5.68 6.905 5.5 8H5l.057-2z" />
+                                </svg>
+                                Resumo
+                            </button>
                         </div>
-
-                        <button class="btn btn-danger" @click="excluirPedido(pedido)">Excluir</button>
-
-                        <button class="btn btn-default" @click="resumoPedido(pedido.id)">
-                            <span class="material-symbols-outlined">
-                                picture_as_pdf
-                            </span>
-                        </button>
                     </td>
                 </tr>
             </tbody>
