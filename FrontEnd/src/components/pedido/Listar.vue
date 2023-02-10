@@ -2,34 +2,32 @@
     <h3 class="text-center" style="margin-top: 10px;">LISTAGEM DE PEDIDOS</h3>
     <hr />
     <div class="container col-7">
-        <router-link class="btn btn-success" to="/pedido/cadastrar" style="margin-bottom: 10px;">Cadastrar Pedido</router-link>
+        <router-link class="btn btn-success" to="/pedido/cadastrar" style="margin-bottom: 10px;">Cadastrar
+            Pedido</router-link>
         <div class="row">
             <div class="col-4">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Pedido ID"
-                        v-model="pedidos.id">
+                    <input type="text" class="form-control" placeholder="Pedido ID" v-model="pedidos.id">
                     <button class="btn btn-outline-secondary" type="button"
                         @click="resumoPedido(pedidos.id)">Pesquisar</button>
                 </div>
             </div>
             <div class="col-4">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Vendedor ID"
-                        v-model="pedidos.vendedorId">
+                    <input type="text" class="form-control" placeholder="Vendedor ID" v-model="pedidos.vendedorId">
                     <button class="btn btn-outline-secondary" type="button"
                         @click="obterPedidosVendedor(pedidos.vendedorId)">Pesquisar</button>
                 </div>
             </div>
             <div class="col-4">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cliente ID"
-                        v-model="pedidos.clienteId">
+                    <input type="text" class="form-control" placeholder="Cliente ID" v-model="pedidos.clienteId">
                     <button class="btn btn-outline-secondary" type="button"
                         @click="obterPedidosCliente(pedidos.clienteId)">Pesquisar</button>
                 </div>
             </div>
         </div>
-        <p v-if="pedidos.length === 0"  class="text-center">
+        <p v-if="pedidos.length === 0" class="text-center">
             Não foi encontado nenhum pedido.
         </p>
         <table class="table table-striped" v-else>
@@ -112,7 +110,7 @@ export default {
             PedidoDataService.listarPorCliente(id).then(response => this.pedidos = response.data)
         },
         resumoPedido(id) {
-            this.$router.push('/pedido/resumo/' + id);
+            return this.$router.push('/pedido/resumo/' + id);
         },
         buscarItensPedido(id) {
             this.$router.push('/pedido/' + id + '/itemPedido/listar')
